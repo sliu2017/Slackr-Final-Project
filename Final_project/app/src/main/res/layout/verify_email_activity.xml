@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFFFF">
+
+    <ImageView
+        android:id="@+id/verify_email_img"
+        android:layout_width="195dp"
+        android:layout_height="177dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="108dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/paper"
+        android:contentDescription="@string/todo" />
+
+    <TextView
+        android:id="@+id/check_email"
+        android:layout_width="219dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="138dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="138dp"
+        android:text="@string/in_order_to_use_your_slackr_account_you_must_verify_your_email"
+        android:textAlignment="center"
+        android:textColor="#8D000000"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verify_email_img" />
+
+    <Button
+        android:id="@+id/verify"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="122dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="138dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="138dp"
+        android:layout_marginBottom="278dp"
+        android:background="@drawable/verify_button"
+        android:text="@string/verify"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/check_email" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
