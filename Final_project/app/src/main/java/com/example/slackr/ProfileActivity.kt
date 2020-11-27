@@ -1,20 +1,17 @@
 package com.example.slackr
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.provider.MediaStore
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.FirebaseError
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.database.*
+import java.io.FileNotFoundException
+import java.io.IOException
 
 
 class ProfileActivity : AppCompatActivity() {
@@ -38,10 +35,20 @@ class ProfileActivity : AppCompatActivity() {
         val mSecurityButton = findViewById<CardView>(R.id.security)
         val mPersonalButton = findViewById<CardView>(R.id.personal)
 
+        val buttonLoadImage = findViewById<ImageView>(R.id.profilepic)
+        buttonLoadImage.setOnClickListener{
+                val i = Intent(
+                    Intent.ACTION_PICK,
+                    MediaStore.Images.Media.INTERNAL_CONTENT_URI
+                )
+                startActivityForResult(i, 1)
+        }
+
         val uid = mAuth!!.currentUser?.uid
         var first = ""
         var last = ""
-        uid?.let { mDatabaseReference!!.child(it)}?.addListenerForSingleValueEvent(object : ValueEventListener {
+        uid?.let { mDatabaseReference!!.child(it)}?.addListenerForSingleValueEvent(object :
+            ValueEventListener {
 
 
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -72,6 +79,28 @@ class ProfileActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+
+        //change to match with registrationactivity
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            val selectedImage = data?.data
+            var bitmap: Bitmap? = null
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, selectedImage)
+                val buttonLoadImage = findViewById<ImageView>(R.id.profilepic)
+                buttonLoadImage.setImageBitmap(bitmap)
+            } catch (e: FileNotFoundException) {
+                // TODO Auto-generated catch block
+                e.printStackTrace()
+            } catch (e: IOException) {
+                // TODO Auto-generated catch block
+                e.printStackTrace()
+            }
+        }
+    }
+
 }
 
 class SecurityActivity: AppCompatActivity(){
@@ -185,7 +214,8 @@ class PersonalActivity : AppCompatActivity(){
             finish()
         }
 
-        uid?.let { mDatabaseReference!!.child(it)}?.addListenerForSingleValueEvent(object : ValueEventListener {
+        uid?.let { mDatabaseReference!!.child(it)}?.addListenerForSingleValueEvent(object :
+            ValueEventListener {
 
 
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -209,7 +239,7 @@ class PersonalActivity : AppCompatActivity(){
         })
     }
 
-    fun default(value : Any?) :String{
+    fun default(value: Any?) :String{
         if(value != null){
             return value as String
         }
