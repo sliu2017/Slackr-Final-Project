@@ -20,6 +20,9 @@
         <activity android:name="com.example.slackr.ProfileActivity"/>
         <activity android:name="com.example.slackr.SecurityActivity"/>
         <activity android:name="com.example.slackr.PersonalActivity"/>
+        <activity android:name="com.example.slackr.QuizActivity"/>
+        <activity android:name="com.example.slackr.ResultActivity"/>
+        <activity android:name="com.example.slackr.VerifyActivity"/>
     </application>
 
 </manifest>

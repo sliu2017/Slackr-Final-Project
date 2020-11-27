@@ -45,6 +45,14 @@ class DashBoardActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        styleCard!!.setOnClickListener{
+            val intent = Intent(this@DashBoardActivity, QuizActivity::class.java)
+
+            startActivity(intent)
+        }
+
+
+
 
 
     }

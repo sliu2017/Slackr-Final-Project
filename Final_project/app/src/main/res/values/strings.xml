@@ -16,5 +16,8 @@
     <string name="find_my_learning_style">Find my Learning Style</string>
     <string name="profile">Profile</string>
     <string name="input_error_name">first name required</string>
+    <string name="in_order_to_use_your_slackr_account_you_must_verify_your_email">In order to use your slackr account you must verify your email</string>
+    <string name="verify">Verify</string>
+    <string name="more_information">More information</string>
 
 </resources>
