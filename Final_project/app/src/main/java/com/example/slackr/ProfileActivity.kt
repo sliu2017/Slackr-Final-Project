@@ -178,10 +178,10 @@ class PersonalActivity : AppCompatActivity(){
 
         mUpdateButton.setOnClickListener{
             currUser!!.child("fname").setValue(mFirstName.text.toString())
-            currUser!!.child("lname").setValue(mLastName.text.toString())
-            currUser!!.child("major").setValue(mCurrentMajor.text.toString())
-            currUser!!.child("minor").setValue(mCurrentMinor.text.toString())
-            currUser!!.child("school").setValue(mCurrentSchool.text.toString())
+            currUser.child("lname").setValue(mLastName.text.toString())
+            currUser.child("major").setValue(mCurrentMajor.text.toString())
+            currUser.child("minor").setValue(mCurrentMinor.text.toString())
+            currUser.child("school").setValue(mCurrentSchool.text.toString())
             finish()
         }
 
@@ -189,12 +189,12 @@ class PersonalActivity : AppCompatActivity(){
 
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                first = default(snapshot.child("fname")?.value)
-                last = default(snapshot.child("lname")?.value)
-                major = default(snapshot.child("major")?.value)
-                minor = default(snapshot.child("minor")?.value)
-                school = default(snapshot.child("school")?.value)
-                learningStyle = default(snapshot.child("style_of_learning")?.value)
+                first = default(snapshot.child("fname").value)
+                last = default(snapshot.child("lname").value)
+                major = default(snapshot.child("major").value)
+                minor = default(snapshot.child("minor").value)
+                school = default(snapshot.child("school").value)
+                learningStyle = default(snapshot.child("style_of_learning").value)
                 mFirstName.setText(first)
                 mLastName.setText(last)
                 mCurrentMajor.setText(major)

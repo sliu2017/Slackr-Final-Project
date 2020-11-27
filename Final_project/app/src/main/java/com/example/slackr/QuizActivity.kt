@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.RadioButton
 import android.widget.TextView
 
+@Suppress("NAME_SHADOWING")
 class QuizActivity : AppCompatActivity() {
 
     private var btnNext: Button? = null
@@ -66,20 +67,20 @@ class QuizActivity : AppCompatActivity() {
             if (id==10) {
                 btnNext!!.text = "Submit"
                 id+=1
-            } else if (id==11){
-                var type=""
-                type = if(tactileRes >= audibleRes && tactileRes >= visualRes){
-                    "Tactile"
-                } else if(visualRes >= audibleRes && visualRes >= tactileRes){
-                    "Visual"
+            } else {
+                if (id==11){
+                    val type: String = if(tactileRes >= audibleRes && tactileRes >= visualRes){
+                        "Tactile"
+                    } else if(visualRes >= audibleRes && visualRes >= tactileRes){
+                        "Visual"
 
-                } else{
-                    "Audible"
+                    } else{
+                        "Audible"
+                    }
+                    Log.i(TAG, type)
+                    val newFragment = AlertDialogFragment.newInstance(type)
+                    newFragment.show(supportFragmentManager, "quiz_result")
                 }
-                val intent= Intent(this@QuizActivity, ResultActivity::class.java)
-                intent.putExtra(TYPE, type)
-                Log.i(TAG, type)
-                startActivity(intent)
             }
             Log.i(TAG, id.toString())
         }
