@@ -97,7 +97,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/style"
+                android:id="@+id/academics"
                 android:layout_width="171dp"
                 android:layout_height="235dp"
                 android:layout_margin="12dp"
@@ -123,6 +123,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/find_my_learning_style"
+                        android:textStyle="bold"
                         android:textAlignment="center" />
                 </LinearLayout>
 
@@ -164,6 +165,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/find_match"
+                        android:textStyle="bold"
                         android:textAlignment="center" />
                 </LinearLayout>
 
@@ -195,6 +197,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/log_out"
+                        android:textStyle="bold"
                         android:textAlignment="center" />
                 </LinearLayout>
 

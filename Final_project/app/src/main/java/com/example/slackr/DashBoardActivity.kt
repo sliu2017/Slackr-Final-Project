@@ -2,12 +2,11 @@ package com.example.slackr
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.dashboard_activity.*
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class DashBoardActivity : AppCompatActivity() {
     
@@ -30,29 +29,23 @@ class DashBoardActivity : AppCompatActivity() {
 
         logOutCard = findViewById(R.id.logout)
         profileCard = findViewById(R.id.profile)
-        styleCard = findViewById(R.id.style)
+        styleCard = findViewById(R.id.academics)
         matchesCard = findViewById(R.id.matches)
 
         logOutCard!!.setOnClickListener {
             mAuth!!.signOut()
-            finish()
-            //val intent = Intent(this@DashBoardActivity, LoginActivity::class.java)
-            //startActivity(intent)
-        }
-        styleCard!!.setOnClickListener {
-
-            val intent = Intent(this@DashBoardActivity, QuizActivity::class.java)
+            val intent = Intent(this@DashBoardActivity, LoginActivity::class.java)
             startActivity(intent)
+        }
 
+        //add this
+        profileCard!!.setOnClickListener{
+            val intent = Intent(this@DashBoardActivity, ProfileActivity::class.java)
+
+            startActivity(intent)
         }
 
 
-
-
-    }
-    companion object {
-        const val TAG = "Final_Project"
-        const val TYPE = "type"
 
     }
 }

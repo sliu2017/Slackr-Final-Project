@@ -65,19 +65,8 @@ class LoginActivity : AppCompatActivity() {
 
                     val uid= mAuth!!.currentUser!!.uid
                     Log.i("log in successfull", uid)
-                    if (mAuth!!.currentUser!!.isEmailVerified){
-                        val intent=Intent(this@LoginActivity, DashBoardActivity::class.java)
-                        startActivity(intent)
-                    } else{
-                        Toast.makeText(
-                            applicationContext,
-                            "We have sent your a verification email. Please verify your email and log in back",
-                            Toast.LENGTH_LONG
-                        ).show()
-                        val intent=Intent(this@LoginActivity, VerifyActivity::class.java)
-                        startActivity(intent)
-                    }
-
+                    val intent=Intent(this@LoginActivity, DashBoardActivity::class.java)
+                    startActivity(intent)
                 } else {
                     Toast.makeText(
                         applicationContext,
@@ -92,7 +81,6 @@ class LoginActivity : AppCompatActivity() {
 
     companion object {
         const val USER_EMAIL = "com.example.slackr.useremail"
-        const val USER_ID = "user_id"
 
     }
 }

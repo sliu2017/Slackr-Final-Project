@@ -49,13 +49,11 @@ class RegistrationActivity : AppCompatActivity() {
         if (fname.isEmpty()) {
             Toast.makeText(applicationContext, "Please enter a valid first name...", Toast.LENGTH_LONG).show()
             fnameTV!!.requestFocus()
-            Log.i(TAG, "pass here3")
             return
         }
         if (lname.isEmpty()) {
             Toast.makeText(applicationContext, "Please enter a valid last name...", Toast.LENGTH_LONG).show()
             lnameTV!!.requestFocus()
-            Log.i(TAG, "pass here4")
             return
         }
 
@@ -63,19 +61,17 @@ class RegistrationActivity : AppCompatActivity() {
 
         if (!validator.validEmail(email)) {
             Toast.makeText(applicationContext, "Please enter a valid email...", Toast.LENGTH_LONG).show()
-            Log.i(TAG, "pass here5")
             return
         }
         if (!validator.validPassword(password)) {
             Toast.makeText(applicationContext, "Please enter a valid password!", Toast.LENGTH_LONG).show()
-            Log.i(TAG, "pass here6")
             return
         }
 
         mAuth!!.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Log.i(TAG, "pass here")
+
                         val user = User(fname, lname, email)
                         FirebaseDatabase.getInstance().getReference("Users")
                             .child(FirebaseAuth.getInstance().currentUser!!.uid)
@@ -83,7 +79,6 @@ class RegistrationActivity : AppCompatActivity() {
                             .addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
                                     Toast.makeText(applicationContext, "Registration successful!", Toast.LENGTH_LONG).show()
-
                                     val intent = Intent(this@RegistrationActivity, LoginActivity::class.java)
                                     startActivity(intent)
                                 } else {
@@ -98,15 +93,9 @@ class RegistrationActivity : AppCompatActivity() {
                                 }
                             }
                     } else {
-                        Log.i(TAG, "failed here1")
                         Toast.makeText(applicationContext, "Registration failed! Please try again later", Toast.LENGTH_LONG).show()
 
                     }
                 }
-    }
-    companion object {
-        const val TAG = "Final_Project"
-
-
     }
 }
