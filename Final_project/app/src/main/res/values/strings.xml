@@ -10,7 +10,6 @@
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="register">REGISTER</string>
-    <string name="todo">TODO</string>
     <string name="log_out">Log out</string>
     <string name="find_match">Find match</string>
     <string name="find_my_learning_style">Find my Learning Style</string>
@@ -18,6 +17,11 @@
     <string name="input_error_name">first name required</string>
     <string name="in_order_to_use_your_slackr_account_you_must_verify_your_email">In order to use your slackr account you must verify your email</string>
     <string name="verify">Verify</string>
+    <string name="todo">TODO</string>
     <string name="more_information">More information</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tips">Tips</string>
+    <string name="close">close</string>
 
 </resources>

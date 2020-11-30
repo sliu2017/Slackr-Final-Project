@@ -2,14 +2,21 @@ package com.example.slackr
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import java.io.File
 import java.io.FileNotFoundException
 import java.io.IOException
 
@@ -20,6 +27,7 @@ class ProfileActivity : AppCompatActivity() {
     private var mDatabaseReference: DatabaseReference? = null
     private var mDatabase: FirebaseDatabase? = null
     private var mAuth: FirebaseAuth? = null
+    private var mStorageReference: StorageReference? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +36,7 @@ class ProfileActivity : AppCompatActivity() {
         mDatabase = FirebaseDatabase.getInstance()
         mDatabaseReference = mDatabase!!.reference.child("Users")
         mAuth = FirebaseAuth.getInstance()
+        mStorageReference = FirebaseStorage.getInstance().reference
 
 
         val mProfileText = findViewById<TextView>(R.id.nameText)
@@ -47,6 +56,9 @@ class ProfileActivity : AppCompatActivity() {
         val uid = mAuth!!.currentUser?.uid
         var first = ""
         var last = ""
+
+
+
         uid?.let { mDatabaseReference!!.child(it)}?.addListenerForSingleValueEvent(object :
             ValueEventListener {
 
@@ -54,7 +66,9 @@ class ProfileActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 first = snapshot.child("fname").value as String
                 last = snapshot.child("lname").value as String
+
                 mProfileText.text = "$first $last's Profile"
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -89,8 +103,39 @@ class ProfileActivity : AppCompatActivity() {
             var bitmap: Bitmap? = null
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, selectedImage)
-                val buttonLoadImage = findViewById<ImageView>(R.id.profilepic)
-                buttonLoadImage.setImageBitmap(bitmap)
+
+
+
+
+
+                if (selectedImage != null) {
+                    var mBitmap: Bitmap? = null
+
+                    val imageStream =
+                        selectedImage?.let { this@ProfileActivity.contentResolver.openInputStream(it) };
+                    mBitmap = BitmapFactory.decodeStream(imageStream);
+
+                    if (mBitmap == null) {
+                        mBitmap = BitmapFactory.decodeResource(resources, R.drawable.user)
+                    }
+                    val buttonLoadImage = findViewById<ImageView>(R.id.profilepic)
+                    buttonLoadImage.setImageBitmap(mBitmap)
+
+                    val profileUpdates = UserProfileChangeRequest.Builder()
+                        .setPhotoUri(Uri.parse(selectedImage.toString()))
+                        .build()
+
+                    mAuth!!.currentUser?.updateProfile(profileUpdates)
+                        ?.addOnCompleteListener(OnCompleteListener<Void?> { task ->
+                            if (task.isSuccessful) {
+                                Toast.makeText(this, "Profile Updated", Toast.LENGTH_SHORT)
+                            }
+                        })
+                    /*mStorageReference!!.child("images/" + mAuth!!.currentUser?.uid).putFile(
+                        selectedImage
+                    )*/
+
+                }
             } catch (e: FileNotFoundException) {
                 // TODO Auto-generated catch block
                 e.printStackTrace()
