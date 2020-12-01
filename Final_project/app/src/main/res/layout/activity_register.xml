@@ -27,10 +27,10 @@
 
     <LinearLayout
         android:id="@+id/linearLayout3"
-        android:layout_width="370dp"
-        android:layout_height="426dp"
+        android:layout_width="369dp"
+        android:layout_height="495dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:alpha="0.5"
         android:divider="@drawable/divider"
@@ -38,7 +38,6 @@
         android:padding="16dp"
         android:showDividers="middle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
@@ -52,6 +51,7 @@
             android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:textColorHint="#FFFFFF"
+            android:textColor="#FFFFFF"
             android:textSize="24sp" />
 
         <EditText
@@ -64,6 +64,7 @@
             android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:textColorHint="#FFFFFF"
+            android:textColor="#FFFFFF"
             android:textSize="24sp" />
 
         <EditText
@@ -76,6 +77,7 @@
             android:importantForAutofill="no"
             android:inputType="textEmailAddress"
             android:textColorHint="#FFFFFF"
+            android:textColor="#FFFFFF"
             android:textSize="24sp" />
 
         <EditText
@@ -88,7 +90,15 @@
             android:importantForAutofill="no"
             android:inputType="textPassword"
             android:textColorHint="#FFFFFF"
+            android:textColor="#FFFFFF"
             android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:text="Password Must Have:\nA minimum of 8 characters\nA letter\nA number" />
 
         <Button
             android:id="@+id/register"

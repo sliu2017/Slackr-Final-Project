@@ -38,7 +38,6 @@ class DashBoardActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //add this
         profileCard!!.setOnClickListener{
             val intent = Intent(this@DashBoardActivity, ProfileActivity::class.java)
 
@@ -51,7 +50,11 @@ class DashBoardActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        matchesCard!!.setOnClickListener{
+            val intent = Intent(this@DashBoardActivity, MatchActivity::class.java)
 
+            startActivity(intent)
+        }
 
 
 
