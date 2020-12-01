@@ -40,7 +40,6 @@ class DashBoardActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //add this
         profileCard!!.setOnClickListener{
             val intent = Intent(this@DashBoardActivity, ProfileActivity::class.java)
             intent.addFlags(FLAG_GRANT_READ_URI_PERMISSION)
@@ -54,7 +53,11 @@ class DashBoardActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        matchesCard!!.setOnClickListener{
+            val intent = Intent(this@DashBoardActivity, MatchActivity::class.java)
 
+            startActivity(intent)
+        }
 
 
 

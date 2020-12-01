@@ -38,6 +38,7 @@ class RegistrationActivity : AppCompatActivity() {
 
 
         regBtn!!.setOnClickListener { registerNewUser() }
+
     }
 
     private fun registerNewUser() {
@@ -66,7 +67,7 @@ class RegistrationActivity : AppCompatActivity() {
             return
         }
         if (!validator.validPassword(password)) {
-            Toast.makeText(applicationContext, "Please enter a valid password!", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "Password must be at least 8 characters\nand have at least a letter and a number", Toast.LENGTH_LONG).show()
             return
         }
 
