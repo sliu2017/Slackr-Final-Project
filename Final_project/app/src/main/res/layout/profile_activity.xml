@@ -28,13 +28,15 @@
             android:textColor="#fafafa"
             android:textSize="30sp" />
 
-        <ImageButton
-            android:id="@+id/imageButton2"
+        <ImageView
+            android:id="@+id/profilepic"
             android:layout_width="125dp"
             android:layout_height="125dp"
+            android:contentDescription="TODO"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:srcCompat="@drawable/user"
+            tools:src="@tools:sample/avatars" />
 
     </LinearLayout>
 

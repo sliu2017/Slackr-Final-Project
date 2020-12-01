@@ -13,18 +13,18 @@ class AlertDialogFragment : DialogFragment() {
 
     // Class that creates the AlertDialog
 
-        companion object {
+    companion object {
 
-            fun newInstance(type:String): AlertDialogFragment {
-                val fragment = AlertDialogFragment()
-                val bundle = Bundle()
-                bundle.putString("msg", type) // set msg here
-                fragment.arguments=bundle
-                return fragment
-            }
+        fun newInstance(type:String): AlertDialogFragment {
+            val fragment = AlertDialogFragment()
+            val bundle = Bundle()
+            bundle.putString("msg", type) // set msg here
+            fragment.arguments=bundle
+            return fragment
         }
+    }
 
-        override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             // Use the Builder class for convenient dialog construction
             val builder = AlertDialog.Builder(it)
@@ -49,4 +49,3 @@ class AlertDialogFragment : DialogFragment() {
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 }
-

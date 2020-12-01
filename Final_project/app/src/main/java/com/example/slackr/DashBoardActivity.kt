@@ -1,6 +1,8 @@
 package com.example.slackr
 
 import android.content.Intent
+import android.content.Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
+import android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
@@ -41,7 +43,8 @@ class DashBoardActivity : AppCompatActivity() {
         //add this
         profileCard!!.setOnClickListener{
             val intent = Intent(this@DashBoardActivity, ProfileActivity::class.java)
-
+            intent.addFlags(FLAG_GRANT_READ_URI_PERMISSION)
+            intent.addFlags(FLAG_GRANT_PERSISTABLE_URI_PERMISSION)
             startActivity(intent)
         }
 

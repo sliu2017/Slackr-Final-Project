@@ -1,6 +1,8 @@
 package com.example.slackr
 
 import android.content.Intent
+import android.graphics.BitmapFactory
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -73,11 +75,16 @@ class RegistrationActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
 
                         val user = User(fname, lname, email)
+
+
                         FirebaseDatabase.getInstance().getReference("Users")
                             .child(FirebaseAuth.getInstance().currentUser!!.uid)
                             .setValue(user)
                             .addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
+                                    /*FirebaseDatabase.getInstance().getReference("Users")
+                                        .child(FirebaseAuth.getInstance().currentUser!!.uid).child("profilepic").setValue(
+                                            BitmapFactory.decodeResource(resources, R.drawable.user).toString())*/
                                     Toast.makeText(applicationContext, "Registration successful!", Toast.LENGTH_LONG).show()
                                     val intent = Intent(this@RegistrationActivity, LoginActivity::class.java)
                                     startActivity(intent)

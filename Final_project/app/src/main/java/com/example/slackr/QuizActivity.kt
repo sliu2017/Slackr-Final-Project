@@ -7,6 +7,9 @@ import android.util.Log
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.TextView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 @Suppress("NAME_SHADOWING")
 class QuizActivity : AppCompatActivity() {
@@ -17,6 +20,9 @@ class QuizActivity : AppCompatActivity() {
     private var mTactile : RadioButton? =null
     private var mVisual : RadioButton? =null
     private var mAudible : RadioButton? =null
+    private var mDatabaseReference: DatabaseReference? = null
+    private var mDatabase: FirebaseDatabase? = null
+    private var mAuth: FirebaseAuth? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +34,9 @@ class QuizActivity : AppCompatActivity() {
         mVisual = findViewById(R.id.visual)
         mAudible = findViewById(R.id.audible)
         questionCountTv = findViewById(R.id.question_number)
+        mDatabase = FirebaseDatabase.getInstance()
+        mDatabaseReference = mDatabase!!.reference.child("Users")
+        mAuth = FirebaseAuth.getInstance()
         var count =0
         var audibleRes=0
         var visualRes=0
@@ -77,6 +86,7 @@ class QuizActivity : AppCompatActivity() {
                     } else{
                         "Audible"
                     }
+                    mDatabaseReference!!.child(mAuth!!.currentUser!!.uid).child("style_of_learning").setValue(type)
                     Log.i(TAG, type)
                     val newFragment = AlertDialogFragment.newInstance(type)
                     newFragment.show(supportFragmentManager, "quiz_result")
