@@ -58,8 +58,11 @@ class DashBoardActivity : AppCompatActivity() {
 
             startActivity(intent)
         }
+    }
 
-
-
+    override fun onBackPressed() {
+        mAuth!!.signOut()
+        val intent = Intent(this@DashBoardActivity, LoginActivity::class.java)
+        startActivity(intent)
     }
 }
