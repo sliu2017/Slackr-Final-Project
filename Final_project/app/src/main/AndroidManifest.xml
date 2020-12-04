@@ -25,6 +25,9 @@
         <activity android:name="com.example.slackr.ResultActivity"/>
         <activity android:name="com.example.slackr.VerifyActivity"/>
         <activity android:name="com.example.slackr.MatchActivity"/>
+        <activity android:name="com.example.slackr.CreateGroupPromptActivity"/>
+        <activity android:name="com.example.slackr.CreateGroupActivity"/>
+        <activity android:name="com.example.slackr.GroupListActivity"/>
     </application>
 
 </manifest>
