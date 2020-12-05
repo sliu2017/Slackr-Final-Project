@@ -73,6 +73,7 @@ class CreateGroupFragment : DialogFragment() {
 
             )
             val id = (databaseGroups.push()).key.toString()
+            databaseGroups.child("groupID").setValue(id)
             databaseGroups.child(id).setValue(group)
 
                 .addOnCompleteListener { task ->

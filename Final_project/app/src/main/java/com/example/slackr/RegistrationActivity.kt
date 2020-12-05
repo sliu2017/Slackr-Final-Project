@@ -1,14 +1,11 @@
 package com.example.slackr
 
 import android.content.Intent
-import android.graphics.BitmapFactory
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
+import android.widget.AdapterView.OnItemSelectedListener
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -21,6 +18,7 @@ class RegistrationActivity : AppCompatActivity() {
     private var fnameTV: EditText ? = null
     private var lnameTV: EditText ? = null
     private var regBtn: Button? = null
+    private lateinit var spinnerType: Spinner
     private var validator = Validators()
 
     private var mAuth: FirebaseAuth? = null
@@ -35,8 +33,16 @@ class RegistrationActivity : AppCompatActivity() {
         fnameTV = findViewById(R.id.fname)
         lnameTV = findViewById(R.id.lname)
         regBtn = findViewById(R.id.register)
+        spinnerType = findViewById(R.id.type_of_styles)
 
+        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
+            this@RegistrationActivity,
+            android.R.layout.simple_spinner_item, learningArray
+        )
 
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        spinnerType.adapter = adapter
         regBtn!!.setOnClickListener { registerNewUser() }
 
     }
@@ -48,6 +54,11 @@ class RegistrationActivity : AppCompatActivity() {
         val password: String = passwordTV!!.text.toString()
         val fname : String = fnameTV!!.text.toString().trim()
         val lname : String = lnameTV!!.text.toString().trim()
+        var styleOfLearning : String = spinnerType.selectedItem.toString()
+        if(styleOfLearning == "Don't Know" || styleOfLearning=="Choose your learning style"){
+            styleOfLearning=""
+        }
+
 
         if (fname.isEmpty()) {
             Toast.makeText(applicationContext, "Please enter a valid first name...", Toast.LENGTH_LONG).show()
@@ -75,7 +86,7 @@ class RegistrationActivity : AppCompatActivity() {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
 
-                        val user = User(fname, lname, email)
+                        val user = User(fname, lname, email, styleOfLearning)
 
 
                         FirebaseDatabase.getInstance().getReference("Users")
@@ -83,9 +94,6 @@ class RegistrationActivity : AppCompatActivity() {
                             .setValue(user)
                             .addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
-                                    /*FirebaseDatabase.getInstance().getReference("Users")
-                                        .child(FirebaseAuth.getInstance().currentUser!!.uid).child("profilepic").setValue(
-                                            BitmapFactory.decodeResource(resources, R.drawable.user).toString())*/
                                     Toast.makeText(applicationContext, "Registration successful!", Toast.LENGTH_LONG).show()
                                     val intent = Intent(this@RegistrationActivity, LoginActivity::class.java)
                                     startActivity(intent)
@@ -105,5 +113,19 @@ class RegistrationActivity : AppCompatActivity() {
 
                     }
                 }
+    }
+
+    companion object {
+
+        const val TAG = "Final_Project"
+
+        val learningArray = arrayOf(
+            "Choose your learning style",
+            "Don't Know",
+            "Visual",
+            "Audible",
+            "Tactile"
+        )
+
     }
 }

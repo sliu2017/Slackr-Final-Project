@@ -4,6 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 class StudyGroup() : Parcelable {
+    var groupID: String? =null
     var groupName: String? = null
     var groupDescription: String? = null
     var groupLogistics: String? = null
@@ -40,6 +41,7 @@ class StudyGroup() : Parcelable {
         this.groupParticipantLimit = groupParticipantLimit
         groupLearningStyle=""
         searchKey=""
+        groupID=""
         this.createdBy=createdBy
         this.groupSubject= groupSubject
         this.groupSubjectCode= groupSubjectCode
