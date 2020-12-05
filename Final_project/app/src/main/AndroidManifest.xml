@@ -9,7 +9,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GroupMatchesActivity"></activity>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +25,7 @@
         <activity android:name=".VerifyActivity" />
         <activity android:name=".MatchActivity" />
         <activity android:name=".GroupListActivity" />
+        <activity android:name=".ManagePersonalGroupListActivity" />
     </application>
 
 </manifest>

@@ -30,21 +30,6 @@
 
         </ListView>
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:gravity="center"
-            android:text="Create a group"
-            android:textAlignment="center"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/create_own_group"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Create my group" />
-
     </LinearLayout>
 
 </LinearLayout>
