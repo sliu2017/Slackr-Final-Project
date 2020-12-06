@@ -127,7 +127,7 @@
                         android:text="Group Information" />
 
                     <EditText
-                        android:id="@+id/groupInfo"
+                        android:id="@+id/group_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -167,7 +167,7 @@
                         android:text="Logistics" />
 
                     <EditText
-                        android:id="@+id/groupLogistics"
+                        android:id="@+id/group_logistics"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -207,7 +207,7 @@
                         android:text="Number of Participants" />
 
                     <EditText
-                        android:id="@+id/groupCapacity"
+                        android:id="@+id/group_participant"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
