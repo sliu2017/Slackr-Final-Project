@@ -25,6 +25,15 @@ class PromptManageGroupFragment : DialogFragment() {
             return PromptManageGroupFragment()
         }
     }
+
+    private var mContext : Context? = null
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        // Bug: in api< 23 this is never called
+        // so mActivity=null
+        // so app crashes with null-pointer exception
+        mContext = context
+    }
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         mDatabase = FirebaseDatabase.getInstance()
         mAuth = FirebaseAuth.getInstance()
@@ -56,20 +65,20 @@ class PromptManageGroupFragment : DialogFragment() {
                                         groups.add(group!!)
                                     }
                                 }
-                                if (groups.isEmpty()){
+                                if (groups.isEmpty()) {
 
                                     Toast.makeText(
-                                        this@PromptManageGroupFragment.context, "you currently " +
+                                            mContext, "you currently " +
                                             "have no matches " +
                                             "Please find a matches", Toast.LENGTH_LONG).show()
                                     dismiss()
 
-                                } else{
+                                } else {
                                     /**
                                      *  display matches
                                      * **/
-                                    if(this@PromptManageGroupFragment.activity != null){
-                                        val intent= Intent(this@PromptManageGroupFragment.activity, ManageGroupMatchesListActivity::class.java)
+                                    if (this@PromptManageGroupFragment.activity != null) {
+                                        val intent = Intent(this@PromptManageGroupFragment.activity, ManageGroupMatchesListActivity::class.java)
                                         intent.putExtra("matching_groups", groups as ArrayList<StudyGroup>)
                                         startActivity(intent)
                                     }
@@ -106,19 +115,19 @@ class PromptManageGroupFragment : DialogFragment() {
                                         groups.add(group!!)
                                     }
                                 }
-                                if (groups.isEmpty()){
+                                if (groups.isEmpty()) {
 
-                                    Toast.makeText(this@PromptManageGroupFragment.context, "you currently " +
+                                    Toast.makeText(mContext, "you currently " +
                                             "have no personal groups " +
                                             "Please find a matches or create one", Toast.LENGTH_LONG).show()
                                     dismiss()
 
-                                } else{
+                                } else {
                                     /**
                                      *  display matches
                                      * **/
-                                    if(this@PromptManageGroupFragment.activity!=null){
-                                        val intent= Intent(this@PromptManageGroupFragment.activity, ManagePersonalGroupListActivity::class.java)
+                                    if (this@PromptManageGroupFragment.activity != null) {
+                                        val intent = Intent(this@PromptManageGroupFragment.activity, ManagePersonalGroupListActivity::class.java)
                                         intent.putExtra("matching_groups", groups as ArrayList<StudyGroup>)
                                         startActivity(intent)
                                     }
