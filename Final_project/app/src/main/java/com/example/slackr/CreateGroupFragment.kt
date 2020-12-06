@@ -98,6 +98,7 @@ class CreateGroupFragment : DialogFragment() {
                             }
                             )
                             Toast.makeText(this@CreateGroupFragment.context, "Group created!", Toast.LENGTH_LONG).show()
+                            dismiss()
 
                         } else{
                             Toast.makeText(this@CreateGroupFragment.context, "Unable to create the group. Please try again later!", Toast.LENGTH_LONG).show()

@@ -10,8 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 
 class UpdateGroupFragment : DialogFragment() {
@@ -61,6 +60,27 @@ class UpdateGroupFragment : DialogFragment() {
         mDatabaseReference = mDatabase!!.reference.child("Users")
         databaseGroups = mDatabase!!.reference
         val groupId=arguments!!.getString("groupID")
+        groupId?.let { databaseGroups.child("Groups")!!.child(it)}?.addListenerForSingleValueEvent(object :
+                ValueEventListener {
+
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val groupName = snapshot.child("groupName").value as String
+                val groupDesc = snapshot.child("groupDescription").value as String
+                val groupLog = snapshot.child("groupLogistics").value as String
+                val groupSize = snapshot.child("groupParticipantLimit").value as String
+
+                groupNameET.setText(groupName)
+                groupDescriptionET.setText(groupDesc)
+                groupLogisiticsET.setText(groupLog)
+                groupParticipantET.setText(groupSize)
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
 
         closeTV!!.setOnClickListener{
             dismiss()
