@@ -1,6 +1,7 @@
 package com.example.slackr
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -58,7 +59,7 @@ class PromptManageGroupFragment : DialogFragment() {
                                 if (groups.isEmpty()){
 
                                     Toast.makeText(
-                                        this@PromptManageGroupFragment.activity, "you currently " +
+                                        this@PromptManageGroupFragment.context, "you currently " +
                                             "have no matches " +
                                             "Please find a matches", Toast.LENGTH_LONG).show()
                                     dismiss()
@@ -67,9 +68,12 @@ class PromptManageGroupFragment : DialogFragment() {
                                     /**
                                      *  display matches
                                      * **/
-                                    val intent= Intent(this@PromptManageGroupFragment.activity, ManageGroupMatchesListActivity::class.java)
-                                    intent.putExtra("matching_groups", groups as ArrayList<StudyGroup>)
-                                    startActivity(intent)
+                                    if(this@PromptManageGroupFragment.activity != null){
+                                        val intent= Intent(this@PromptManageGroupFragment.activity, ManageGroupMatchesListActivity::class.java)
+                                        intent.putExtra("matching_groups", groups as ArrayList<StudyGroup>)
+                                        startActivity(intent)
+                                    }
+
                                 }
 
                             }
@@ -104,7 +108,7 @@ class PromptManageGroupFragment : DialogFragment() {
                                 }
                                 if (groups.isEmpty()){
 
-                                    Toast.makeText(this@PromptManageGroupFragment.activity, "you currently " +
+                                    Toast.makeText(this@PromptManageGroupFragment.context, "you currently " +
                                             "have no personal groups " +
                                             "Please find a matches or create one", Toast.LENGTH_LONG).show()
                                     dismiss()
@@ -113,9 +117,12 @@ class PromptManageGroupFragment : DialogFragment() {
                                     /**
                                      *  display matches
                                      * **/
-                                    val intent= Intent(this@PromptManageGroupFragment.activity, ManagePersonalGroupListActivity::class.java)
-                                    intent.putExtra("matching_groups", groups as ArrayList<StudyGroup>)
-                                    startActivity(intent)
+                                    if(this@PromptManageGroupFragment.activity!=null){
+                                        val intent= Intent(this@PromptManageGroupFragment.activity, ManagePersonalGroupListActivity::class.java)
+                                        intent.putExtra("matching_groups", groups as ArrayList<StudyGroup>)
+                                        startActivity(intent)
+                                    }
+
                                 }
 
                             }

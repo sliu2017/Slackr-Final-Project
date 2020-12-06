@@ -16,6 +16,7 @@ class StudyGroup() : Parcelable {
     var createdBy: String ? = null
 
     constructor(parcel: Parcel) : this() {
+        groupID = parcel.readString()
         groupName = parcel.readString()
         groupDescription = parcel.readString()
         groupLogistics = parcel.readString()
@@ -23,6 +24,8 @@ class StudyGroup() : Parcelable {
         groupParticipantLimit = parcel.readString()
         groupSubject = parcel.readString()
         groupSubjectCode = parcel.readString()
+        searchKey = parcel.readString()
+        createdBy = parcel.readString()
     }
 
 
@@ -48,6 +51,7 @@ class StudyGroup() : Parcelable {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(groupID)
         parcel.writeString(groupName)
         parcel.writeString(groupDescription)
         parcel.writeString(groupLogistics)
@@ -55,6 +59,8 @@ class StudyGroup() : Parcelable {
         parcel.writeString(groupParticipantLimit)
         parcel.writeString(groupSubject)
         parcel.writeString(groupSubjectCode)
+        parcel.writeString(searchKey)
+        parcel.writeString(createdBy)
     }
 
     override fun describeContents(): Int {
@@ -70,4 +76,6 @@ class StudyGroup() : Parcelable {
             return arrayOfNulls(size)
         }
     }
+
+
 }

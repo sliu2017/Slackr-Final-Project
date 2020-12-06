@@ -67,48 +67,47 @@ class CreateGroupFragment : DialogFragment() {
         createbtn!!.setOnClickListener{
             val subject =arguments!!.get("subject") as String
             val code= arguments!!.get("code") as String
-            var group = StudyGroup(groupNameET!!.text.toString(), groupDescriptionET!!.text.toString(), groupLogisiticsET!!.text.toString(),
-                groupParticipantET!!.text.toString(),
-                subject, code, mAuth!!.currentUser!!.uid
+            if(groupNameET!!.text.isEmpty() || groupNameET!!.text.isBlank()){
+                Toast.makeText(this@CreateGroupFragment.context, "Group name is required!", Toast.LENGTH_LONG).show()
+            } else{
+                var group = StudyGroup(groupNameET!!.text.toString(), groupDescriptionET!!.text.toString(), groupLogisiticsET!!.text.toString(),
+                    groupParticipantET!!.text.toString(),
+                    subject, code, mAuth!!.currentUser!!.uid
 
-            )
-            val id = (databaseGroups.push()).key.toString()
-            databaseGroups.child("groupID").setValue(id)
-            databaseGroups.child(id).setValue(group)
+                )
+                val id = (databaseGroups.push()).key.toString()
 
-                .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Toast.makeText(activity, "Group created!", Toast.LENGTH_LONG).show()
+                databaseGroups.child(id).setValue(group)
 
-                } else{
-                    Toast.makeText(activity, "Unable to create the group. Please try again later!", Toast.LENGTH_LONG).show()
-                }
-                    activity!!.supportFragmentManager.popBackStack()
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            val uid = mAuth!!.currentUser?.uid
+
+                            uid?.let { mDatabaseReference!!.child(it)}?.addListenerForSingleValueEvent(object :
+                                ValueEventListener {
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    val learningStyle = snapshot.child("style_of_learning").value as String
+                                    databaseGroups.child(id).child("groupLearningStyle").setValue(learningStyle)
+                                    databaseGroups.child(id).child("groupID").setValue(id)
+                                    var key: String =subject+code+learningStyle
+                                    databaseGroups.child(id).child("searchKey").setValue(key)
+                                }
+                                override fun onCancelled(error: DatabaseError) {
+                                    TODO("Not yet implemented")
+                                }
+                            }
+                            )
+                            Toast.makeText(this@CreateGroupFragment.context, "Group created!", Toast.LENGTH_LONG).show()
+
+                        } else{
+                            Toast.makeText(this@CreateGroupFragment.context, "Unable to create the group. Please try again later!", Toast.LENGTH_LONG).show()
+                        }
+
+                    }
             }
-            val uid = mAuth!!.currentUser?.uid
-
-            uid?.let { mDatabaseReference!!.child(it)}?.addListenerForSingleValueEvent(object :
-                ValueEventListener {
 
 
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val learningStyle = snapshot.child("style_of_learning").value as String
-                    databaseGroups.child(id).child("groupLearningStyle").setValue(learningStyle)
-                    var key: String =subject+code+learningStyle
-                    databaseGroups.child(id).child("searchKey").setValue(key)
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
-                }
-            }
-
-
-            )
-
-            activity!!.finish()
         }
-
 
         return createView
     }

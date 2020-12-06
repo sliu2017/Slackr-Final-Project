@@ -38,8 +38,8 @@ class DashBoardActivity : AppCompatActivity() {
 
         logOutCard!!.setOnClickListener {
             mAuth!!.signOut()
-            val intent = Intent(this@DashBoardActivity, LoginActivity::class.java)
-            startActivity(intent)
+            finish()
+
         }
 
         profileCard!!.setOnClickListener{
@@ -68,6 +68,6 @@ class DashBoardActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         mAuth!!.signOut()
-        finish()
+
     }
 }
