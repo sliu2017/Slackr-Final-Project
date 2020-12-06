@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.slackr">
-
+    package="com.example.slackr" >
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
     <application
         android:allowBackup="true"
+
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".GroupMatchesActivity"></activity>
-        <activity android:name=".LoginActivity">
+        android:theme="@style/AppTheme" >
+        <activity android:name=".LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegistrationActivity" />
-        <activity android:name=".DashBoardActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".SecurityActivity" />
-        <activity android:name=".PersonalActivity" />
-        <activity android:name=".QuizActivity" />
-        <activity android:name=".VerifyActivity" />
-        <activity android:name=".MatchActivity" />
-        <activity android:name=".GroupListActivity" />
+        <activity android:name="com.example.slackr.RegistrationActivity" />
+        <activity android:name="com.example.slackr.DashBoardActivity"/>
+        <activity android:name="com.example.slackr.ProfileActivity"/>
+        <activity android:name="com.example.slackr.SecurityActivity"/>
+        <activity android:name="com.example.slackr.PersonalActivity"/>
+        <activity android:name="com.example.slackr.QuizActivity"/>
+        <activity android:name="com.example.slackr.ResultActivity"/>
+        <activity android:name="com.example.slackr.VerifyActivity"/>
+        <activity android:name="com.example.slackr.MatchActivity"/>
+        <activity android:name="com.example.slackr.CreateGroupPromptActivity"/>
+        <activity android:name="com.example.slackr.CreateGroupActivity"/>
+        <activity android:name="com.example.slackr.GroupListActivity"/>
     </application>
 
 </manifest>

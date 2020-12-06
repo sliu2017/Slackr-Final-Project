@@ -8,7 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 
 
-open class AlertDialogFragment : DialogFragment() {
+class AlertDialogFragment : DialogFragment() {
 
 
     // Class that creates the AlertDialog
