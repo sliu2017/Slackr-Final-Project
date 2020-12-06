@@ -26,6 +26,7 @@
         <activity android:name=".MatchActivity" />
         <activity android:name=".GroupListActivity" />
         <activity android:name=".ManagePersonalGroupListActivity" />
+        <activity android:name=".ManageGroupMatchesListActivity" />
     </application>
 
 </manifest>

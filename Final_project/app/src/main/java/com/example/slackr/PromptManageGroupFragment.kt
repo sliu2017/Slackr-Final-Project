@@ -1,6 +1,5 @@
 package com.example.slackr
 
-import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -10,7 +9,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-
 
 class PromptManageGroupFragment : DialogFragment() {
 
@@ -28,16 +26,13 @@ class PromptManageGroupFragment : DialogFragment() {
         }
     }
 
-    private var mContext: Context? = null
-    private var mActivity: Activity? = null
-    // Initialise it from onAttach()
+    private var mContext : Context? = null
     override fun onAttach(context: Context) {
-        super.onAttach(context!!)
+        super.onAttach(context)
+        // Bug: in api< 23 this is never called
+        // so mActivity=null
+        // so app crashes with null-pointer exception
         mContext = context
-
-        if (context is Activity) {
-            mActivity = context as Activity
-        }
     }
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         mDatabase = FirebaseDatabase.getInstance()
@@ -82,9 +77,12 @@ class PromptManageGroupFragment : DialogFragment() {
                                     /**
                                      *  display matches
                                      * **/
-                                    val intent = Intent(mActivity, ManageGroupMatchesListActivity::class.java)
-                                    intent.putExtra("matching_groups", groups as ArrayList<StudyGroup>)
-                                    startActivity(intent)
+                                    if (this@PromptManageGroupFragment.activity != null) {
+                                        val intent = Intent(this@PromptManageGroupFragment.activity, ManageGroupMatchesListActivity::class.java)
+                                        intent.putExtra("matching_groups", groups as ArrayList<StudyGroup>)
+                                        startActivity(intent)
+                                    }
+
                                 }
 
                             }
@@ -128,9 +126,12 @@ class PromptManageGroupFragment : DialogFragment() {
                                     /**
                                      *  display matches
                                      * **/
-                                    val intent = Intent(activity, ManagePersonalGroupListActivity::class.java)
-                                    intent.putExtra("matching_groups", groups as ArrayList<StudyGroup>)
-                                    startActivity(intent)
+                                    if (this@PromptManageGroupFragment.activity != null) {
+                                        val intent = Intent(this@PromptManageGroupFragment.activity, ManagePersonalGroupListActivity::class.java)
+                                        intent.putExtra("matching_groups", groups as ArrayList<StudyGroup>)
+                                        startActivity(intent)
+                                    }
+
                                 }
 
                             }

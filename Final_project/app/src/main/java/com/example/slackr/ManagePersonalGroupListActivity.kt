@@ -15,7 +15,7 @@ class ManagePersonalGroupListActivity : AppCompatActivity() {
         setContentView(R.layout.group_manage_activity)
 
         matches= intent.getParcelableArrayListExtra<StudyGroup>("matching_groups") as ArrayList<StudyGroup>
-        listViewMatches = findViewById<View>(R.id.list_matches) as ListView
+        listViewMatches = findViewById<View>(R.id.list_manage_matches) as ListView
         listViewMatches.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->
             val group = adapterView.getItemAtPosition(i)
             (group as StudyGroup).groupID?.let {

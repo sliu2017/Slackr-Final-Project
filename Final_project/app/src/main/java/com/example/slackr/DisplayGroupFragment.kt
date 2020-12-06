@@ -46,11 +46,11 @@ class DisplayGroupFragment : DialogFragment() {
         var createView=inflater.inflate(R.layout.fragment_display_group, container, false)
         dialog?.setCanceledOnTouchOutside(false)
         groupNameTV = createView.findViewById(R.id.groupName)
-        groupDescriptionTV = createView.findViewById(R.id.group_descrition)
+        groupDescriptionTV = createView.findViewById(R.id.group_description)
         groupLogisiticsTV = createView.findViewById(R.id.group_logistics)
         groupParticipantTV = createView.findViewById(R.id.group_participant)
         closeTV = createView.findViewById(R.id.close_create)
-        groupNameTV.text = arguments!!.getParcelable<StudyGroup>("group")!!.groupName
+        groupNameTV.text= arguments!!.getParcelable<StudyGroup>("group")!!.groupName
         groupDescriptionTV.text= arguments!!.getParcelable<StudyGroup>("group")!!.groupDescription
         groupLogisiticsTV.text= arguments!!.getParcelable<StudyGroup>("group")!!.groupLogistics
         groupParticipantTV.text= arguments!!.getParcelable<StudyGroup>("group")!!.groupParticipantLimit

@@ -10,7 +10,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 
 class UpdateGroupFragment : DialogFragment() {
@@ -58,7 +59,7 @@ class UpdateGroupFragment : DialogFragment() {
         mDatabase = FirebaseDatabase.getInstance()
         mAuth = FirebaseAuth.getInstance()
         mDatabaseReference = mDatabase!!.reference.child("Users")
-        databaseGroups = mDatabase!!.reference.child("Groups")
+        databaseGroups = mDatabase!!.reference
         val groupId=arguments!!.getString("groupID")
 
         closeTV!!.setOnClickListener{
@@ -66,17 +67,52 @@ class UpdateGroupFragment : DialogFragment() {
         }
         updatebtn!!.setOnClickListener{
 
+            if(groupNameET.text.isBlank() || groupNameET.text.isEmpty()){
+                Toast.makeText(this@UpdateGroupFragment.activity, "Group name is required", Toast.LENGTH_LONG).show()
+            }else{
+                if (groupId != null) {
+                    val childUpdates = hashMapOf<String, Any>(
+                        "/Groups/$groupId/groupName" to groupNameET.text.toString(),
+                        "/Groups/$groupId/groupDescription" to groupDescriptionET.text.toString(),
+                        "/Groups/$groupId/groupLogistics" to groupLogisiticsET.text.toString(),
+                        "/Groups/$groupId/groupParticipantLimit" to groupParticipantET.text.toString()
+                    )
+                    databaseGroups.updateChildren(childUpdates).addOnCompleteListener{
+                            task->
+                        run {
 
-            if (groupId != null) {
+                            if (task.isSuccessful) {
 
-                databaseGroups.child(groupId).child("groupName").setValue(groupNameET.text.toString())
-                databaseGroups.child(groupId).child("groupDescription").setValue(groupDescriptionET.text.toString())
-                databaseGroups.child(groupId).child("groupLogistics").setValue(groupLogisiticsET.text.toString())
-                databaseGroups.child(groupId).child("groupParticipantLimit").setValue(groupParticipantET.text.toString())
-                Toast.makeText(activity, "Group Updated", Toast.LENGTH_LONG).show()
+                                if(this@UpdateGroupFragment.context !=null){
+                                    Toast.makeText(
+                                        this@UpdateGroupFragment.context,
+                                        "Group Updated",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
+                                dismiss()
+                                activity!!.finish()
+
+
+
+                            } else {
+                                if(this@UpdateGroupFragment.context !=null){
+                                    Toast.makeText(
+                                        this@UpdateGroupFragment.context,
+                                        "Failed to Update Group",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
+                                dismiss()
+                                activity!!.finish()
+                            }
+                        }
+
+                    }
+
+                }
             }
 
-            dismiss()
         }
 
 
