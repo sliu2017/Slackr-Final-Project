@@ -1,6 +1,8 @@
 package com.example.slackr
 
+import android.app.Activity
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -8,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+
 
 class PromptManageGroupFragment : DialogFragment() {
 
@@ -22,6 +25,18 @@ class PromptManageGroupFragment : DialogFragment() {
 
         fun newInstance(): DialogFragment {
             return PromptManageGroupFragment()
+        }
+    }
+
+    private var mContext: Context? = null
+    private var mActivity: Activity? = null
+    // Initialise it from onAttach()
+    override fun onAttach(context: Context) {
+        super.onAttach(context!!)
+        mContext = context
+
+        if (context is Activity) {
+            mActivity = context as Activity
         }
     }
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -55,19 +70,19 @@ class PromptManageGroupFragment : DialogFragment() {
                                         groups.add(group!!)
                                     }
                                 }
-                                if (groups.isEmpty()){
+                                if (groups.isEmpty()) {
 
                                     Toast.makeText(
-                                        this@PromptManageGroupFragment.activity, "you currently " +
+                                            mContext, "you currently " +
                                             "have no matches " +
                                             "Please find a matches", Toast.LENGTH_LONG).show()
                                     dismiss()
 
-                                } else{
+                                } else {
                                     /**
                                      *  display matches
                                      * **/
-                                    val intent= Intent(this@PromptManageGroupFragment.activity, ManageGroupMatchesListActivity::class.java)
+                                    val intent = Intent(mActivity, ManageGroupMatchesListActivity::class.java)
                                     intent.putExtra("matching_groups", groups as ArrayList<StudyGroup>)
                                     startActivity(intent)
                                 }
@@ -102,18 +117,18 @@ class PromptManageGroupFragment : DialogFragment() {
                                         groups.add(group!!)
                                     }
                                 }
-                                if (groups.isEmpty()){
+                                if (groups.isEmpty()) {
 
-                                    Toast.makeText(this@PromptManageGroupFragment.activity, "you currently " +
+                                    Toast.makeText(mContext, "you currently " +
                                             "have no personal groups " +
                                             "Please find a matches or create one", Toast.LENGTH_LONG).show()
                                     dismiss()
 
-                                } else{
+                                } else {
                                     /**
                                      *  display matches
                                      * **/
-                                    val intent= Intent(this@PromptManageGroupFragment.activity, ManagePersonalGroupListActivity::class.java)
+                                    val intent = Intent(activity, ManagePersonalGroupListActivity::class.java)
                                     intent.putExtra("matching_groups", groups as ArrayList<StudyGroup>)
                                     startActivity(intent)
                                 }

@@ -12,7 +12,7 @@ class CreateGroupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_group)
 
-        var mGroupName: EditText = findViewById(R.id.groupName)
+       /* var mGroupName: EditText = findViewById(R.id.groupName)
         var mGroupDescription: EditText = findViewById(R.id.groupParticipantLimit)
         var mGroupLogistics: EditText = findViewById(R.id.groupLogistics)
         var mGroupParticipantLimit: EditText = findViewById(R.id.groupParticipantLimit)
@@ -29,7 +29,7 @@ class CreateGroupActivity : AppCompatActivity() {
         mCreateGroupButton!!.setOnClickListener {
             val intent = Intent(this@CreateGroupActivity, DashBoardActivity::class.java)
             startActivity(intent)
-        }
+        }*/
 
     }
 }
