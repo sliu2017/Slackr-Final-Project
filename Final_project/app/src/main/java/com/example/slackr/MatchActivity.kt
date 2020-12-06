@@ -2,10 +2,8 @@ package com.example.slackr
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
+import android.util.Log
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -68,20 +66,16 @@ class MatchActivity : AppCompatActivity() {
                     } else {
                         val key: String = subject + code + learningStyle
 
-                        Log.i(TAG, key)
                         databaseGroups.orderByChild("searchKey").equalTo(key)
                             .addListenerForSingleValueEvent((object : ValueEventListener {
                                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                                    Log.i(TAG, "here 1")
                                     matches.clear()
                                     var group: StudyGroup? = null
                                     var count = 0
                                     var mGroupId: String? = null
                                     for (postSnapshot in dataSnapshot.children) {
                                         try {
-                                            Log.i(TAG, "here 2")
                                             group = postSnapshot.getValue(StudyGroup::class.java)
-                                            group!!.groupName?.let { it1 -> Log.i(TAG, it1) }
                                             mGroupId = postSnapshot.key
 
                                         } catch (e: Exception) {
@@ -89,7 +83,6 @@ class MatchActivity : AppCompatActivity() {
                                         } finally {
 
                                             if (!group!!.createdBy.equals(mAuth!!.currentUser!!.uid)) {
-                                                Log.i(TAG, "here 3")
                                                 matches.add(group!!)
 
                                                 if (mGroupId != null) {
@@ -97,15 +90,11 @@ class MatchActivity : AppCompatActivity() {
                                                 }
 
                                             } else {
-                                                Log.i(TAG, "here 4")
                                                 count++
                                             }
 
                                         }
                                     }
-                                    Log.i(TAG, matches.toString())
-                                    Log.i(TAG, count.toString())
-                                    Log.i(TAG, "here 5")
                                     if (matches.isEmpty() && count == 0) {
 
                                         val newFragment =
@@ -115,11 +104,9 @@ class MatchActivity : AppCompatActivity() {
                                             "prompt_create_group"
                                         )
                                     } else if (matches.isEmpty() && count >= 1) {
-                                        Log.i(TAG, "here 6")
                                         val newFragment = PromptNoGroupFragment.newInstance()
                                         newFragment.show(supportFragmentManager, "no_group")
                                     } else {
-                                        Log.i(TAG, "here 7")
                                         /**
                                          *  display matches
                                          * **/
@@ -127,7 +114,6 @@ class MatchActivity : AppCompatActivity() {
                                             this@MatchActivity,
                                             GroupListActivity::class.java
                                         )
-                                        Log.i(TAG, matches.toString())
                                         intent.putExtra(
                                             "matching_groups",
                                             matches as ArrayList<StudyGroup>
