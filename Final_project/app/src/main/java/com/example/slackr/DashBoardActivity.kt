@@ -16,6 +16,7 @@ class DashBoardActivity : AppCompatActivity() {
     private var profileCard : CardView? = null
     private var styleCard : CardView? = null
     private var matchesCard : CardView? = null
+    private var manageGroupCard : CardView? = null
     private var mDatabaseReference: DatabaseReference? = null
     private var mDatabase: FirebaseDatabase? = null
     private var mAuth: FirebaseAuth? = null
@@ -33,11 +34,12 @@ class DashBoardActivity : AppCompatActivity() {
         profileCard = findViewById(R.id.profile)
         styleCard = findViewById(R.id.academics)
         matchesCard = findViewById(R.id.matches)
+        manageGroupCard = findViewById(R.id.manage_group)
 
         logOutCard!!.setOnClickListener {
             mAuth!!.signOut()
-            val intent = Intent(this@DashBoardActivity, LoginActivity::class.java)
-            startActivity(intent)
+            finish()
+
         }
 
         profileCard!!.setOnClickListener{
@@ -58,11 +60,14 @@ class DashBoardActivity : AppCompatActivity() {
 
             startActivity(intent)
         }
+        manageGroupCard!!.setOnClickListener {
+            val newFragment = PromptManageGroupFragment.newInstance()
+            newFragment.show(supportFragmentManager, "manage_group")
+        }
     }
 
     override fun onBackPressed() {
         mAuth!!.signOut()
-        val intent = Intent(this@DashBoardActivity, LoginActivity::class.java)
-        startActivity(intent)
+
     }
 }

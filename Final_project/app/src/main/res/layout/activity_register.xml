@@ -12,7 +12,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="40dp"
         android:layout_marginBottom="63dp"
         android:text="@string/slackr"
         android:textColor="#FFFFFF"
@@ -20,15 +20,14 @@
         android:textSize="45sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.443"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
-        android:layout_width="369dp"
-        android:layout_height="495dp"
+        android:layout_width="352dp"
+        android:layout_height="579dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
@@ -43,41 +42,41 @@
 
         <EditText
             android:id="@+id/fname"
-            android:layout_width="341dp"
-            android:layout_height="62dp"
+            android:layout_width="326dp"
+            android:layout_height="58dp"
             android:background="@drawable/linear"
             android:ems="10"
             android:hint="@string/first_name"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textColorHint="#FFFFFF"
             android:textSize="24sp" />
 
         <EditText
             android:id="@+id/lname"
-            android:layout_width="341dp"
-            android:layout_height="64dp"
+            android:layout_width="324dp"
+            android:layout_height="68dp"
             android:background="@drawable/linear"
             android:ems="10"
             android:hint="@string/last_name"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:textSize="24sp" />
 
         <EditText
             android:id="@+id/email"
-            android:layout_width="341dp"
-            android:layout_height="66dp"
+            android:layout_width="320dp"
+            android:layout_height="68dp"
             android:background="@drawable/linear"
             android:ems="10"
             android:hint="@string/email"
             android:importantForAutofill="no"
             android:inputType="textEmailAddress"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:textSize="24sp" />
 
         <EditText
@@ -89,16 +88,23 @@
             android:hint="@string/password"
             android:importantForAutofill="no"
             android:inputType="textPassword"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:textSize="24sp" />
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#FFFFFF"
-            android:text="Password Must Have:\nA minimum of 8 characters\nA letter\nA number" />
+            android:text="Password Must Have:\nA minimum of 8 characters\nA letter\nA number"
+            android:textColor="@color/white" />
+
+        <Spinner
+            android:id="@+id/type_of_styles"
+            style="@style/Widget.AppCompat.Spinner.DropDown.ActionBar"
+            android:layout_width="320dp"
+            android:layout_height="54dp"
+            android:background="@drawable/linear" />
 
         <Button
             android:id="@+id/register"
@@ -107,7 +113,7 @@
             android:layout_height="62dp"
             android:background="@drawable/linear"
             android:text="@string/register"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="18sp" />
     </LinearLayout>
 
