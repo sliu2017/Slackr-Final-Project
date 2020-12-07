@@ -257,7 +257,7 @@ class PersonalActivity : AppCompatActivity(){
         val mUpdateButton = findViewById<Button>(R.id.update)
 
 
-
+9
 
         mUpdateButton.setOnClickListener{
             currUser!!.child("fname").setValue(mFirstName.text.toString())

@@ -4,15 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@color/white"
     android:orientation="vertical"
     android:theme="@style/Theme.AppCompat.Light.NoActionBar"
     android:weightSum="7"
     tools:context="com.example.slackr.DashBoardActivity">
 
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="53dp"
+        android:background="@drawable/bg"
+        android:gravity="center_vertical"
         android:text="Dashboard"
         android:textAlignment="center"
         android:textColor="#fafafa"
