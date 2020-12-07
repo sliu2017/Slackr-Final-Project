@@ -37,8 +37,8 @@
             android:contentDescription="TODO"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/user"
-            tools:src="@tools:sample/avatars" />
+            app:srcCompat="@drawable/profile_user_white"
+             />
 
     </LinearLayout>
 

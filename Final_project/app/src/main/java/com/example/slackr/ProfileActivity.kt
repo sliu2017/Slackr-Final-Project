@@ -144,7 +144,7 @@ class ProfileActivity : AppCompatActivity() {
         mBitmap = BitmapFactory.decodeStream(imageStream);
 
         if (mBitmap == null) {
-            mBitmap = BitmapFactory.decodeResource(resources, R.drawable.user)
+            mBitmap = BitmapFactory.decodeResource(resources, R.drawable.profile_user_white)
         }
         val buttonLoadImage = findViewById<ImageView>(R.id.profilepic)
         buttonLoadImage.setImageBitmap(mBitmap)
