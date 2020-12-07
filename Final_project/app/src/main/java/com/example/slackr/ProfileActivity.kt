@@ -48,7 +48,7 @@ class ProfileActivity : AppCompatActivity() {
 
 
         val sharedPref = this?.getPreferences(Context.MODE_PRIVATE) ?: return
-        val defaultUri = Uri.parse("android.resource://com.example.slackr/drawable/user")
+        val defaultUri = Uri.parse("android.resource://com.example.slackr/drawable/profile_user_white")
 
         buttonLoadImage.setImageURI(Uri.parse(sharedPref.getString(uid, defaultUri.toString())))
 

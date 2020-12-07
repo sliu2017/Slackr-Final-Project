@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
     tools:context=".UpdateGroupFragment">
 
     <LinearLayout
@@ -23,6 +24,7 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="Update group"
+                android:textColor="@color/white"
                 android:textSize="18sp" />
 
             <TextView
@@ -39,98 +41,121 @@
 
         </LinearLayout>
 
-
-        <LinearLayout
-
-            android:layout_width="771dp"
-            android:layout_height="332dp"
-            android:gravity="center"
-            android:orientation="vertical"
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:foregroundGravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <LinearLayout
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="246dp">
-
-                <EditText
-                    android:id="@+id/groupName"
-                    android:layout_width="700dp"
-                    android:layout_height="51dp"
-                    android:background="@drawable/editcreatebg"
-                    android:hint="Name (Required)"
-                    android:imeOptions="actionDone|flagNoExtractUi"
-                    android:inputType="textPersonName"
-                    android:paddingLeft="15dp"
-                    android:singleLine="true"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <EditText
-                    android:id="@+id/group_descrition"
-                    android:layout_width="700dp"
-                    android:layout_height="49dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/editcreatebg"
-                    android:hint="Description"
-                    android:imeOptions="actionDone|flagNoExtractUi"
-                    android:inputType="textPersonName"
-                    android:paddingLeft="10dp"
-                    android:singleLine="true"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/groupName" />
-
-                <EditText
-                    android:id="@+id/group_logistics"
-                    android:layout_width="700dp"
-                    android:layout_height="47dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/editcreatebg"
-                    android:hint="Logistics"
-                    android:imeOptions="actionDone|flagNoExtractUi"
-                    android:inputType="textPersonName"
-                    android:maxLength="10"
-                    android:paddingLeft="10dp"
-                    android:singleLine="true"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/group_descrition" />
-
-                <EditText
-                    android:id="@+id/group_participant"
-                    android:layout_width="236dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/editcreatebg"
-                    android:hint="Number of Participants"
-                    android:imeOptions="actionDone|flagNoExtractUi"
-                    android:inputType="number"
-                    android:maxLength="10"
-                    android:paddingLeft="10dp"
-                    android:singleLine="true"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/group_logistics" />
-
-                <Button
-                    android:id="@+id/update_group_btn"
-                    android:layout_width="157dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:imeOptions="flagNoExtractUi"
-                    android:text="Update"
-                    android:textAppearance="?android:textAppearanceMedium"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/group_participant"
-                    app:layout_constraintTop_toBottomOf="@+id/group_logistics" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_width="771dp"
+                android:layout_height="332dp"
+                android:gravity="center"
+                android:isScrollContainer="true"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
 
-        </LinearLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="246dp">
 
+                    <EditText
+                        android:id="@+id/groupName"
+                        android:layout_width="700dp"
+                        android:layout_height="51dp"
+                        android:background="@drawable/editcreatebg"
+                        android:hint="Name (Required)"
+
+                        android:imeOptions="actionDone|flagNoExtractUi"
+                        android:inputType="textPersonName"
+                        android:paddingLeft="15dp"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/group_descrition"
+                        android:layout_width="700dp"
+                        android:layout_height="49dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/editcreatebg"
+                        android:lines="5"
+                        android:hint="Description"
+                        android:imeOptions="actionDone|flagNoExtractUi"
+                        android:inputType="textMultiLine"
+                        android:paddingLeft="10dp"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/groupName" />
+
+                    <EditText
+                        android:id="@+id/group_logistics"
+                        android:layout_width="700dp"
+                        android:layout_height="47dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/editcreatebg"
+                        android:hint="Logistics"
+                        android:imeOptions="actionDone|flagNoExtractUi"
+                        android:inputType="textPersonName"
+
+                        android:maxLength="10"
+                        android:paddingLeft="10dp"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/group_descrition" />
+
+                    <EditText
+                        android:id="@+id/group_participant"
+                        android:layout_width="236dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/editcreatebg"
+                        android:hint="Number of Participants"
+                        android:imeOptions="actionDone|flagNoExtractUi"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:paddingLeft="10dp"
+                        android:singleLine="true"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/group_logistics" />
+
+                    <Button
+                        android:id="@+id/update_group_btn"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="157dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="28dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/linear"
+                        android:gravity="center"
+                        android:imeOptions="flagNoExtractUi"
+                        android:text="Update"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/group_participant"
+                        app:layout_constraintTop_toBottomOf="@+id/group_logistics" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 </FrameLayout>

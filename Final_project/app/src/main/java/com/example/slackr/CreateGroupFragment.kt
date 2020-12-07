@@ -70,7 +70,10 @@ class CreateGroupFragment : DialogFragment() {
             val subject =arguments!!.get("subject") as String
             val code= arguments!!.get("code") as String
 
-
+            if(groupLogisiticsET!!.text.isEmpty()){
+                Toast.makeText(this@CreateGroupFragment.context, "Please enter logistics", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
 
             if(groupNameET!!.text.isEmpty() || groupNameET!!.text.isBlank()){
                 Toast.makeText(this@CreateGroupFragment.context, "Group name is required!", Toast.LENGTH_LONG).show()

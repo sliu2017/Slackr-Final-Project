@@ -309,15 +309,7 @@
                     android:gravity="left"
                     android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/backbutton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:text="Back"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+
 
                     <Button
                         android:id="@+id/update"
