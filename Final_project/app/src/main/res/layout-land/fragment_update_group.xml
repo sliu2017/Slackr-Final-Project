@@ -44,7 +44,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
+
             android:foregroundGravity="center_horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -116,21 +116,42 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/group_descrition" />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/group_participant"
                         android:layout_width="236dp"
                         android:layout_height="50dp"
                         android:layout_marginTop="8dp"
                         android:background="@drawable/editcreatebg"
-                        android:hint="Number of Participants"
+                        android:gravity="center"
                         android:imeOptions="actionDone|flagNoExtractUi"
                         android:inputType="number"
                         android:maxLength="10"
                         android:paddingLeft="10dp"
                         android:singleLine="true"
+                        android:text="Group Search Key"
                         android:textColor="@color/white"
                         android:textColorHint="@color/white"
+                        android:textSize="20dp"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/group_logistics" />
+
+
+                    <Button
+                        android:id="@+id/delete_group_btn"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="157dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="28dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/linear"
+                        android:gravity="center"
+                        android:text="Delete"
+                        android:textAppearance="?android:textAppearanceMedium"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/update_group_btn"
                         app:layout_constraintTop_toBottomOf="@+id/group_logistics" />
 
                     <Button

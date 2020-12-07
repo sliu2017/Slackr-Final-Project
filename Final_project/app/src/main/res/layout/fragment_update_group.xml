@@ -105,35 +105,62 @@
                 android:background="@drawable/editcreatebg"
                 android:maxLength="10"
                />
-            <EditText
+
+            <TextView
                 android:id="@+id/group_participant"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="75dp"
-                android:singleLine="true"
                 android:layout_marginTop="20dp"
-                android:paddingLeft="10dp"
-                android:textColorHint="@color/white"
-                android:textColor="@color/white"
-                android:inputType="number"
-                android:hint="Number of Participants"
                 android:background="@drawable/editcreatebg"
-                android:maxLength="10"
-                />
-
-            <Button
-                android:id="@+id/update_group_btn"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/linear"
                 android:gravity="center"
-                android:text="Update"
-                android:textAppearance="?android:textAppearanceMedium"
+                android:inputType="number"
+                android:maxLength="10"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:text="Class Search Key"
                 android:textColor="@color/white"
-                android:textStyle="bold" />
+                android:textColorHint="@color/white"
+                android:textSize="20dp" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="89dp"
+                android:layout_gravity="top"
+                android:layout_weight="1"
+                android:gravity="center_horizontal|top">
+
+                <Button
+                    android:id="@+id/delete_group_btn"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/linear"
+                    android:gravity="center"
+                    android:text="Delete"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/update_group_btn"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/linear"
+                    android:gravity="center"
+                    android:text="Update"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </LinearLayout>>
         </ScrollView>
     </LinearLayout>
