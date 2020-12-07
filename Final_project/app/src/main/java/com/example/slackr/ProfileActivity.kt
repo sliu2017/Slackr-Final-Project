@@ -180,7 +180,8 @@ class SecurityActivity: AppCompatActivity(){
         val mNewEmailText = findViewById<EditText>(R.id.newEmail)
         val mNewPwText = findViewById<EditText>(R.id.newPw)
 
-
+        val image = findViewById<ImageView>(R.id.imageButton2)
+        //image.setImageResource(R.drawable.ic_lo)
 
         mUpdateButton.setOnClickListener{
             val email = mOldEmailText.text.toString()
