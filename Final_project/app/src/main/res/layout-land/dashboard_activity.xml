@@ -62,7 +62,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/user" />
+                        app:srcCompat="@drawable/profile_user" />
 
                     <TextView
                         android:id="@+id/textView2"
@@ -102,7 +102,7 @@
                         android:layout_height="wrap_content"
 
                         android:contentDescription="@string/todo"
-                        app:srcCompat="@drawable/ebook" />
+                        app:srcCompat="@drawable/online_learning" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -134,7 +134,7 @@
                         android:layout_height="wrap_content"
 
                         android:contentDescription="TODO"
-                        app:srcCompat="@drawable/friends" />
+                        app:srcCompat="@drawable/team" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -203,7 +203,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
 
-                        app:srcCompat="@drawable/exit" />
+                        app:srcCompat="@drawable/logout" />
 
                     <TextView
                         android:layout_width="wrap_content"

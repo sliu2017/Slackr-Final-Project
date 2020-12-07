@@ -38,7 +38,7 @@
             android:contentDescription="TODO"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/user"
+            app:srcCompat="@drawable/profile_user_white"
             tools:src="@tools:sample/avatars" />
 
     </LinearLayout>
@@ -76,7 +76,7 @@
                     android:id="@+id/securityImg"
                     android:layout_width="77dp"
                     android:layout_height="77dp"
-                    app:srcCompat="@drawable/setting" />
+                    app:srcCompat="@drawable/management" />
 
                 <TextView
                     android:id="@+id/securityStr"
@@ -117,7 +117,7 @@
                     android:layout_width="77dp"
                     android:layout_height="77dp"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/setting" />
+                    app:srcCompat="@drawable/business_card" />
 
                 <TextView
                     android:id="@+id/personalStr"
