@@ -1,5 +1,7 @@
 package com.example.slackr
 
+import android.app.Dialog
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -117,6 +119,20 @@ class UpdateGroupFragment : DialogFragment() {
 
 
         return createView
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val orientation = resources.configuration.orientation
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            val dialog: Dialog? = dialog
+            if (dialog != null) {
+                val width = ViewGroup.LayoutParams.MATCH_PARENT
+                val height = ViewGroup.LayoutParams.MATCH_PARENT
+                dialog.window?.setLayout(width, height)
+            }
+        }
+
     }
 
 

@@ -86,7 +86,13 @@ class QuizActivity : AppCompatActivity() {
                     } else{
                         "Audible"
                     }
-                    mDatabaseReference!!.child(mAuth!!.currentUser!!.uid).child("style_of_learning").setValue(type)
+                    val uid= mAuth!!.currentUser!!.uid
+                    val childUpdates = hashMapOf<String, Any>(
+                        "/Users/$uid/style_of_learning" to type
+                        
+                    )
+                    mDatabase!!.reference.updateChildren(childUpdates)
+                   // mDatabaseReference!!.child(mAuth!!.currentUser!!.uid).child("style_of_learning").setValue(type)
                     Log.i(TAG, type)
                     val newFragment = AlertDialogFragment.newInstance(type)
                     newFragment.show(supportFragmentManager, "quiz_result")

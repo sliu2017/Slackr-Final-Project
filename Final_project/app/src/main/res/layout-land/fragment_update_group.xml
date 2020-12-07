@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UpdateGroupFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Update group"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/close_create"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:background="@android:drawable/ic_menu_close_clear_cancel"
+                android:gravity="center"
+                android:padding="10dp"
+
+                android:text=""
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+
+            android:layout_width="771dp"
+            android:layout_height="332dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="246dp">
+
+                <EditText
+                    android:id="@+id/groupName"
+                    android:layout_width="700dp"
+                    android:layout_height="51dp"
+                    android:background="@drawable/editcreatebg"
+                    android:hint="Name (Required)"
+                    android:imeOptions="actionDone|flagNoExtractUi"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="15dp"
+                    android:singleLine="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/group_descrition"
+                    android:layout_width="700dp"
+                    android:layout_height="49dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/editcreatebg"
+                    android:hint="Description"
+                    android:imeOptions="actionDone|flagNoExtractUi"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="10dp"
+                    android:singleLine="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/groupName" />
+
+                <EditText
+                    android:id="@+id/group_logistics"
+                    android:layout_width="700dp"
+                    android:layout_height="47dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/editcreatebg"
+                    android:hint="Logistics"
+                    android:imeOptions="actionDone|flagNoExtractUi"
+                    android:inputType="textPersonName"
+                    android:maxLength="10"
+                    android:paddingLeft="10dp"
+                    android:singleLine="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/group_descrition" />
+
+                <EditText
+                    android:id="@+id/group_participant"
+                    android:layout_width="236dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/editcreatebg"
+                    android:hint="Number of Participants"
+                    android:imeOptions="actionDone|flagNoExtractUi"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:paddingLeft="10dp"
+                    android:singleLine="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/group_logistics" />
+
+                <Button
+                    android:id="@+id/update_group_btn"
+                    android:layout_width="157dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:imeOptions="flagNoExtractUi"
+                    android:text="Update"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/group_participant"
+                    app:layout_constraintTop_toBottomOf="@+id/group_logistics" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</FrameLayout>
