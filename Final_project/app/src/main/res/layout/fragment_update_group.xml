@@ -120,20 +120,45 @@
                 android:maxLength="10"
                 />
 
-            <Button
-                android:id="@+id/update_group_btn"
-                style="@style/Widget.AppCompat.Button.Borderless"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/linear"
-                android:gravity="center"
-                android:text="Update"
-                android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
+                android:layout_height="89dp"
+                android:layout_gravity="top"
+                android:layout_weight="1"
+                android:gravity="center_horizontal|top">
 
+                <Button
+                    android:id="@+id/delete_group_btn"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/linear"
+                    android:gravity="center"
+                    android:text="Delete"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/update_group_btn"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/linear"
+                    android:gravity="center"
+                    android:text="Update"
+                    android:textAppearance="?android:textAppearanceMedium"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </LinearLayout>>
         </ScrollView>
     </LinearLayout>
