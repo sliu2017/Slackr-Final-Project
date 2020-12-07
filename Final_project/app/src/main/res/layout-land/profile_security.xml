@@ -80,6 +80,7 @@
                     android:layout_weight="1"
                     android:autofillHints=""
                     android:ems="10"
+                    android:imeOptions="flagNoExtractUi"
                     android:inputType="textEmailAddress" />
             </LinearLayout>
 
@@ -118,6 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
+                    android:imeOptions="flagNoExtractUi"
                     android:inputType="textPersonName" />
 
             </LinearLayout>
@@ -157,6 +159,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint="Leave blank for no change"
+                    android:imeOptions="flagNoExtractUi"
                     android:inputType="textPersonName" />
 
             </LinearLayout>
@@ -196,6 +199,7 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint="Leave blank for no change"
+                    android:imeOptions="flagNoExtractUi"
                     android:inputType="textPersonName" />
 
             </LinearLayout>

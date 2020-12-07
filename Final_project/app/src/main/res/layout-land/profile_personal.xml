@@ -92,6 +92,7 @@
                             android:layout_weight="1"
                             android:autofillHints=""
                             android:ems="10"
+                            android:imeOptions="flagNoExtractUi"
                             android:inputType="textPersonName" />
                     </LinearLayout>
 
@@ -132,6 +133,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:ems="10"
+                            android:imeOptions="flagNoExtractUi"
                             android:inputType="textPersonName" />
 
                     </LinearLayout>
@@ -173,6 +175,7 @@
                             android:layout_weight="1"
                             android:ems="10"
                             android:hint="None"
+                            android:imeOptions="flagNoExtractUi"
                             android:inputType="textPersonName" />
 
                     </LinearLayout>
@@ -214,6 +217,7 @@
                             android:layout_weight="1"
                             android:ems="10"
                             android:hint="None"
+                            android:imeOptions="flagNoExtractUi"
                             android:inputType="textPersonName" />
 
                     </LinearLayout>
@@ -256,6 +260,7 @@
                             android:layout_weight="1"
                             android:ems="10"
                             android:hint="None"
+                            android:imeOptions="flagNoExtractUi"
                             android:inputType="textPersonName" />
 
                     </LinearLayout>
@@ -296,6 +301,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:ems="10"
+                            android:imeOptions="flagNoExtractUi"
                             android:textSize="20dp"
                             android:textStyle="bold" />
 

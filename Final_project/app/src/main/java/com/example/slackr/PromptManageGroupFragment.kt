@@ -77,11 +77,11 @@ class PromptManageGroupFragment : DialogFragment() {
                                     /**
                                      *  display matches
                                      * **/
-                                    if (this@PromptManageGroupFragment.activity != null) {
-                                        val intent = Intent(this@PromptManageGroupFragment.activity, ManageGroupMatchesListActivity::class.java)
+                                    //if (this@PromptManageGroupFragment.activity != null) {
+                                        val intent = Intent(mContext, ManageGroupMatchesListActivity::class.java)
                                         intent.putExtra("matching_groups", groups as ArrayList<StudyGroup>)
-                                        startActivity(intent)
-                                    }
+                                        mContext?.startActivity(intent)
+                                    //}
 
                                 }
 
@@ -126,11 +126,11 @@ class PromptManageGroupFragment : DialogFragment() {
                                     /**
                                      *  display matches
                                      * **/
-                                    if (this@PromptManageGroupFragment.activity != null) {
-                                        val intent = Intent(this@PromptManageGroupFragment.activity, ManagePersonalGroupListActivity::class.java)
+                                    //if (this@PromptManageGroupFragment.activity != null) {
+                                        val intent = Intent(mContext, ManagePersonalGroupListActivity::class.java)
                                         intent.putExtra("matching_groups", groups as ArrayList<StudyGroup>)
-                                        startActivity(intent)
-                                    }
+                                        mContext?.startActivity(intent)
+                                    //}
 
                                 }
 
