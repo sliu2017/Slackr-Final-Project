@@ -48,7 +48,7 @@ class ProfileActivity : AppCompatActivity() {
 
 
         val sharedPref = this?.getPreferences(Context.MODE_PRIVATE) ?: return
-        val defaultUri = Uri.parse("android.resource://com.example.slackr/drawable/user")
+        val defaultUri = Uri.parse("android.resource://com.example.slackr/drawable/profile_user_white")
 
         buttonLoadImage.setImageURI(Uri.parse(sharedPref.getString(uid, defaultUri.toString())))
 
@@ -144,7 +144,7 @@ class ProfileActivity : AppCompatActivity() {
         mBitmap = BitmapFactory.decodeStream(imageStream);
 
         if (mBitmap == null) {
-            mBitmap = BitmapFactory.decodeResource(resources, R.drawable.user)
+            mBitmap = BitmapFactory.decodeResource(resources, R.drawable.profile_user_white)
         }
         val buttonLoadImage = findViewById<ImageView>(R.id.profilepic)
         buttonLoadImage.setImageBitmap(mBitmap)
@@ -180,7 +180,8 @@ class SecurityActivity: AppCompatActivity(){
         val mNewEmailText = findViewById<EditText>(R.id.newEmail)
         val mNewPwText = findViewById<EditText>(R.id.newPw)
 
-
+        val image = findViewById<ImageView>(R.id.imageButton2)
+        //image.setImageResource(R.drawable.ic_lo)
 
         mUpdateButton.setOnClickListener{
             val email = mOldEmailText.text.toString()
@@ -256,7 +257,7 @@ class PersonalActivity : AppCompatActivity(){
         val mUpdateButton = findViewById<Button>(R.id.update)
 
 
-
+9
 
         mUpdateButton.setOnClickListener{
             currUser!!.child("fname").setValue(mFirstName.text.toString())

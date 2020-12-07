@@ -17,10 +17,10 @@ import com.google.firebase.database.*
 
 class CreateGroupFragment : DialogFragment() {
 
-    var groupNameET: EditText? = null
-    var groupDescriptionET:EditText? = null
-    var groupLogisiticsET:EditText? = null
-    var groupParticipantET:EditText? = null
+    private var groupNameET: EditText? = null
+    private var groupDescriptionET:EditText? = null
+    private var groupLogisiticsET:EditText? = null
+    private var groupParticipantET:EditText? = null
     var closeTV : TextView?= null
     var createbtn: Button? = null
     private var mDatabaseReference: DatabaseReference? = null
@@ -69,6 +69,12 @@ class CreateGroupFragment : DialogFragment() {
         createbtn!!.setOnClickListener{
             val subject =arguments!!.get("subject") as String
             val code= arguments!!.get("code") as String
+
+            if(groupLogisiticsET!!.text.isEmpty()){
+                Toast.makeText(this@CreateGroupFragment.context, "Please enter logistics", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
             if(groupNameET!!.text.isEmpty() || groupNameET!!.text.isBlank()){
                 Toast.makeText(this@CreateGroupFragment.context, "Group name is required!", Toast.LENGTH_LONG).show()
             } else{

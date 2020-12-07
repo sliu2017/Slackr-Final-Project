@@ -69,6 +69,5 @@ class DashBoardActivity : AppCompatActivity() {
     override fun onBackPressed() {
         mAuth!!.signOut()
         finish()
-
     }
 }

@@ -40,11 +40,19 @@ class MatchActivity : AppCompatActivity() {
 
         mFindMatch!!.setOnClickListener {
 
+
             var subject = mSubject.selectedItem.toString()
             var code = mCode.text.toString()
 
             val uid = mAuth!!.currentUser?.uid
             matches = ArrayList()
+
+            val codeRegex = Regex("^[0-9]{3}[a-zA-Z]*$")
+            if(!code.matches(codeRegex)){
+                Toast.makeText(this, "Please submit a valid class code.", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
             uid?.let { mDatabaseReference!!.child(it) }?.addListenerForSingleValueEvent(object :
                 ValueEventListener {
 

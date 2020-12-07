@@ -16,7 +16,7 @@
         app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quiz_result"
-        app:srcCompat="@drawable/user" />
+        />
 
     <Button
         android:id="@+id/retry"

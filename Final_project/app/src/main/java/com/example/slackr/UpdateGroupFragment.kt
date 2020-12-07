@@ -89,6 +89,11 @@ class UpdateGroupFragment : DialogFragment() {
         }
         updatebtn!!.setOnClickListener{
 
+            if(groupLogisiticsET!!.text.isEmpty()){
+                Toast.makeText(this@UpdateGroupFragment.context, "Please enter logistics", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+
             if(groupNameET.text.isBlank() || groupNameET.text.isEmpty()){
                 Toast.makeText(this@UpdateGroupFragment.activity, "Group name is required", Toast.LENGTH_LONG).show()
             }else{

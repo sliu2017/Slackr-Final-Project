@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
     tools:context=".UpdateGroupFragment">
 
     <LinearLayout
@@ -17,7 +18,12 @@
         android:gravity="center"
         tools:context=".Fragments.Resourse_Share">
 
-
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -35,6 +41,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="10dp"
+                    android:textColor="@color/white"
                     android:text="Update group"
                     android:textSize="18sp" />
 
@@ -55,9 +62,11 @@
             <EditText
                 android:id="@+id/groupName"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="75dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/editcreatebg"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
                 android:hint="Name (Required)"
                 android:inputType="textPersonName"
                 android:paddingLeft="15dp"
@@ -68,23 +77,29 @@
             <EditText
                 android:id="@+id/group_descrition"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="75dp"
                 android:singleLine="true"
                 android:paddingLeft="10dp"
+                android:lines="5"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/editcreatebg"
                 android:hint="Description"
-                android:inputType="textPersonName"
+                android:inputType="textMultiLine"
+
                 />
 
 
             <EditText
                 android:id="@+id/group_logistics"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="75dp"
                 android:singleLine="true"
                 android:layout_marginTop="20dp"
                 android:paddingLeft="10dp"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
                 android:inputType="textPersonName"
                 android:hint="Logistics"
                 android:background="@drawable/editcreatebg"
@@ -93,10 +108,12 @@
             <EditText
                 android:id="@+id/group_participant"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="75dp"
                 android:singleLine="true"
                 android:layout_marginTop="20dp"
                 android:paddingLeft="10dp"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
                 android:inputType="number"
                 android:hint="Number of Participants"
                 android:background="@drawable/editcreatebg"
@@ -105,16 +122,20 @@
 
             <Button
                 android:id="@+id/update_group_btn"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:background="@drawable/linear"
                 android:gravity="center"
                 android:text="Update"
                 android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@color/white"
                 android:textStyle="bold" />
 
         </LinearLayout>>
-
+        </ScrollView>
     </LinearLayout>
+
 </FrameLayout>

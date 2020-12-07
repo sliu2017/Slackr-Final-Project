@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="247dp"
         android:layout_weight="1"
-        android:background="@drawable/header_bg"
+        android:background="@drawable/bg"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="12dp">
@@ -27,13 +27,13 @@
             android:textColor="#fafafa"
             android:textSize="30sp" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/imageButton2"
-            android:layout_width="125dp"
-            android:layout_height="125dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:srcCompat="@drawable/business_card_white" />
 
     </LinearLayout>
 
@@ -310,15 +310,7 @@
                 android:layout_height="match_parent"
                 android:gravity="left"
                 android:orientation="horizontal">
-                <Button
-                    android:id="@+id/backbutton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:text="Back"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+
 
                 <Button
                     android:id="@+id/update"
