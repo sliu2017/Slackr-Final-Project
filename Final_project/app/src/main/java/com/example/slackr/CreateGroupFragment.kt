@@ -1,5 +1,7 @@
 package com.example.slackr
 
+import android.app.Dialog
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -99,7 +101,6 @@ class CreateGroupFragment : DialogFragment() {
                             )
                             Toast.makeText(this@CreateGroupFragment.context, "Group created!", Toast.LENGTH_LONG).show()
                             dismiss()
-
                         } else{
                             Toast.makeText(this@CreateGroupFragment.context, "Unable to create the group. Please try again later!", Toast.LENGTH_LONG).show()
                         }
@@ -113,5 +114,17 @@ class CreateGroupFragment : DialogFragment() {
         return createView
     }
 
+    override fun onStart() {
+        super.onStart()
+        val orientation = resources.configuration.orientation
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            val dialog: Dialog? = dialog
+            if (dialog != null) {
+                val width = ViewGroup.LayoutParams.MATCH_PARENT
+                val height = ViewGroup.LayoutParams.MATCH_PARENT
+                dialog.window?.setLayout(width, height)
+            }
+        }
 
+    }
 }

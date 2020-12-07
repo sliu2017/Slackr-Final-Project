@@ -21,7 +21,8 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".SecurityActivity" />
         <activity android:name=".PersonalActivity" />
-        <activity android:name=".QuizActivity" />
+        <activity android:name=".QuizActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".VerifyActivity" />
         <activity android:name=".MatchActivity" />
         <activity android:name=".GroupListActivity" />

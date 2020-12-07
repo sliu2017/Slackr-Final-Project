@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
@@ -35,11 +34,6 @@ class PromptManageGroupFragment : DialogFragment() {
         // so app crashes with null-pointer exception
         mContext = context
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         mDatabase = FirebaseDatabase.getInstance()
         mAuth = FirebaseAuth.getInstance()
@@ -86,8 +80,8 @@ class PromptManageGroupFragment : DialogFragment() {
                                     //if (this@PromptManageGroupFragment.activity != null) {
                                         val intent = Intent(mContext, ManageGroupMatchesListActivity::class.java)
                                         intent.putExtra("matching_groups", groups as ArrayList<StudyGroup>)
-                                    mContext?.startActivity(intent)
-                                   // }
+                                        mContext?.startActivity(intent)
+                                    //}
 
                                 }
 

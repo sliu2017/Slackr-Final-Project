@@ -5,22 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-    android:weightSum="7"
     tools:context="com.example.slackr.PersonalActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="247dp"
-        android:layout_weight="1"
-        android:background="@drawable/header_bg"
+        android:layout_width="231dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="12dp">
 
         <TextView
-            android:layout_width="396dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Personal Information"
             android:textAlignment="center"
@@ -41,12 +39,11 @@
     <!--User Profile-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="600dp"
         android:layout_height="wrap_content"
-        android:layout_weight="6"
+        android:layout_weight="1"
         android:orientation="vertical"
-        android:padding="10dp"
-        android:weightSum="2">
+        android:padding="10dp">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -62,7 +59,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/first"
-                    android:layout_width="354dp"
+                    android:layout_width="match_parent"
                     android:layout_height="77dp"
                     android:layout_margin="12dp"
                     android:layout_marginTop="44dp"
@@ -95,8 +92,7 @@
                             android:layout_weight="1"
                             android:autofillHints=""
                             android:ems="10"
-                            android:inputType="textPersonName"
-                            />
+                            android:inputType="textPersonName" />
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
@@ -104,7 +100,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/last"
-                    android:layout_width="354dp"
+                    android:layout_width="match_parent"
                     android:layout_height="77dp"
                     android:layout_margin="12dp"
                     android:layout_marginTop="44dp"
@@ -144,7 +140,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/majors"
-                    android:layout_width="354dp"
+                    android:layout_width="match_parent"
                     android:layout_height="77dp"
                     android:layout_margin="12dp"
                     android:layout_marginTop="44dp"
@@ -184,50 +180,50 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                android:id="@+id/minors"
-                android:layout_width="354dp"
-                android:layout_height="77dp"
-                android:layout_margin="12dp"
-                android:layout_marginTop="44dp"
-                android:layout_weight="1"
-                android:background="@drawable/card"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="5dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.508"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/changePw">
-
-                <LinearLayout
+                    android:id="@+id/minors"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="left"
-                    android:orientation="vertical">
+                    android:layout_height="77dp"
+                    android:layout_margin="12dp"
+                    android:layout_marginTop="44dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/card"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.508"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/changePw">
 
-                    <TextView
-                        android:id="@+id/minorStr"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Current Minor(s)" />
-
-                    <EditText
-                        android:id="@+id/currentMinors"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:hint="None"
-                        android:inputType="textPersonName" />
+                        android:layout_height="match_parent"
+                        android:gravity="left"
+                        android:orientation="vertical">
 
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/minorStr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Current Minor(s)" />
 
-            </androidx.cardview.widget.CardView>
+                        <EditText
+                            android:id="@+id/currentMinors"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:hint="None"
+                            android:inputType="textPersonName" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
 
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/school"
-                    android:layout_width="354dp"
+                    android:layout_width="match_parent"
                     android:layout_height="77dp"
                     android:layout_margin="12dp"
                     android:layout_marginTop="44dp"
@@ -265,9 +261,10 @@
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/learning"
-                    android:layout_width="354dp"
+                    android:layout_width="match_parent"
                     android:layout_height="77dp"
                     android:layout_margin="12dp"
                     android:layout_marginTop="44dp"
@@ -298,41 +295,43 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:textStyle="bold"
+                            android:ems="10"
                             android:textSize="20dp"
-                            android:ems="10" />
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="left"
-                android:orientation="horizontal">
-                <Button
-                    android:id="@+id/backbutton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:text="Back"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
 
-                <Button
-                    android:id="@+id/update"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="@drawable/bg"
-                    android:text="Update"
-                    android:textColor="#FFFFFF"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="left"
+                    android:orientation="horizontal">
 
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/backbutton" />
+                    <Button
+                        android:id="@+id/backbutton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="Back"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <Button
+                        android:id="@+id/update"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/bg"
+                        android:text="Update"
+                        android:textColor="#FFFFFF"
+
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/backbutton" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>

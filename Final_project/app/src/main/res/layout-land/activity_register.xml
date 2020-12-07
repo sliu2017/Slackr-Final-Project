@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    tools:context="com.example.slackr.RegistrationActivity">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="597dp"
+        android:layout_height="390dp"
+        android:layout_marginTop="10dp"
+        android:alpha="0.5"
+        android:divider="@drawable/divider"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:showDividers="middle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/fname"
+                android:layout_width="301dp"
+                android:layout_height="63dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/linear"
+                android:ems="10"
+                android:hint="@string/first_name"
+                android:imeOptions="flagNoExtractUi"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:textColor="@color/white"
+                android:textColorHint="#FFFFFF"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/lname"
+                android:layout_width="216dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/linear"
+                android:ems="10"
+                android:hint="@string/last_name"
+                android:imeOptions="flagNoExtractUi"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/fname"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="297dp"
+                android:layout_height="63dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/linear"
+                android:ems="10"
+                android:hint="@string/email"
+                android:imeOptions="flagNoExtractUi"
+                android:importantForAutofill="no"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fname" />
+
+            <Spinner
+                android:id="@+id/type_of_styles"
+                style="@style/Widget.AppCompat.Spinner.DropDown.ActionBar"
+                android:layout_width="216dp"
+                android:layout_height="63dp"
+                android:layout_marginStart="27dp"
+                android:layout_marginTop="15dp"
+                android:spinnerMode="dropdown"
+                app:layout_constraintStart_toEndOf="@+id/email"
+                app:layout_constraintTop_toBottomOf="@+id/lname" />
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="285dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/linear"
+                android:ems="10"
+                android:hint="@string/password"
+                android:imeOptions="flagNoExtractUi"
+                android:importantForAutofill="no"
+                android:inputType="textPassword"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/email" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="216dp"
+                android:layout_height="71dp"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="15dp"
+                android:imeOptions="flagNoExtractUi"
+                android:text="Password Must Have:\nA minimum of 8 characters\nA letter\nA number"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toEndOf="@+id/password"
+                app:layout_constraintTop_toBottomOf="@+id/type_of_styles" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/register"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="248dp"
+            android:background="@drawable/linear"
+            android:imeOptions="flagNoExtractUi"
+            android:text="@string/register"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="164dp"
+
+        android:imeOptions="flagNoExtractUi"
+        android:text="@string/slackr"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

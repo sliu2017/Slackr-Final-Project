@@ -1,5 +1,7 @@
 package com.example.slackr
 
+import android.app.Dialog
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -60,29 +62,29 @@ class UpdateGroupFragment : DialogFragment() {
         mDatabaseReference = mDatabase!!.reference.child("Users")
         databaseGroups = mDatabase!!.reference
         val groupId=arguments!!.getString("groupID")
-        groupId?.let { databaseGroups.child("Groups")!!.child(it)}?.addListenerForSingleValueEvent(object :
+
+        groupId?.let {databaseGroups!!.child("Groups").child(it)}?.addListenerForSingleValueEvent(object :
                 ValueEventListener {
+        override fun onDataChange(snapshot: DataSnapshot) {
+            val groupName = snapshot.child("groupName").value as String
+            val groupDesc = snapshot.child("groupDescription").value as String
+            val groupLog = snapshot.child("groupLogistics").value as String
+            val groupSize = snapshot.child("groupParticipantLimit").value as String
+
+            groupNameET.setText(groupName)
+            groupDescriptionET.setText(groupDesc)
+            groupLogisiticsET.setText(groupLog)
+            groupParticipantET.setText(groupSize)
+
+        }
+
+        override fun onCancelled(error: DatabaseError) {
+            TODO("Not yet implemented")
+        }
+    })
 
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val groupName = snapshot.child("groupName").value as String
-                val groupDesc = snapshot.child("groupDescription").value as String
-                val groupLog = snapshot.child("groupLogistics").value as String
-                val groupSize = snapshot.child("groupParticipantLimit").value as String
-
-                groupNameET.setText(groupName)
-                groupDescriptionET.setText(groupDesc)
-                groupLogisiticsET.setText(groupLog)
-                groupParticipantET.setText(groupSize)
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
-
-        closeTV!!.setOnClickListener{
+    closeTV!!.setOnClickListener{
             dismiss()
         }
         updatebtn!!.setOnClickListener{
@@ -137,6 +139,20 @@ class UpdateGroupFragment : DialogFragment() {
 
 
         return createView
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val orientation = resources.configuration.orientation
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            val dialog: Dialog? = dialog
+            if (dialog != null) {
+                val width = ViewGroup.LayoutParams.MATCH_PARENT
+                val height = ViewGroup.LayoutParams.MATCH_PARENT
+                dialog.window?.setLayout(width, height)
+            }
+        }
+
     }
 
 

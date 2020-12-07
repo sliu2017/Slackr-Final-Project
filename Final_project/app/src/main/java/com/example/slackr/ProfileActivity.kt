@@ -2,6 +2,7 @@ package com.example.slackr
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -40,7 +41,6 @@ class ProfileActivity : AppCompatActivity() {
 
 
         val mProfileText = findViewById<TextView>(R.id.nameText)
-        val mBackButton = findViewById<Button>(R.id.backbutton)
         val mSecurityButton = findViewById<CardView>(R.id.security)
         val mPersonalButton = findViewById<CardView>(R.id.personal)
         val buttonLoadImage = findViewById<ImageView>(R.id.profilepic)
@@ -59,6 +59,15 @@ class ProfileActivity : AppCompatActivity() {
                     MediaStore.Images.Media.INTERNAL_CONTENT_URI
                 )
                 startActivityForResult(i, 1)
+        }
+
+        mSecurityButton.setOnClickListener{
+            val intent = Intent(this@ProfileActivity, SecurityActivity::class.java)
+            startActivity(intent)
+        }
+        mPersonalButton.setOnClickListener{
+            val intent = Intent(this@ProfileActivity, PersonalActivity::class.java)
+            startActivity(intent)
         }
 
 
@@ -87,19 +96,6 @@ class ProfileActivity : AppCompatActivity() {
 
         mProfileText.text = "$first $last's Profile"
 
-
-
-        mBackButton.setOnClickListener{
-            finish()
-        }
-        mSecurityButton.setOnClickListener{
-            val intent = Intent(this@ProfileActivity, SecurityActivity::class.java)
-            startActivity(intent)
-        }
-        mPersonalButton.setOnClickListener{
-            val intent = Intent(this@ProfileActivity, PersonalActivity::class.java)
-            startActivity(intent)
-        }
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -177,8 +173,6 @@ class SecurityActivity: AppCompatActivity(){
         mDatabaseReference = mDatabase!!.reference.child("Users")
         mAuth = FirebaseAuth.getInstance()
 
-        val mBackButton = findViewById<Button>(R.id.backbutton)
-
         val mUpdateButton = findViewById<Button>(R.id.update)
 
         val mOldEmailText = findViewById<EditText>(R.id.oldEmail)
@@ -186,9 +180,7 @@ class SecurityActivity: AppCompatActivity(){
         val mNewEmailText = findViewById<EditText>(R.id.newEmail)
         val mNewPwText = findViewById<EditText>(R.id.newPw)
 
-        mBackButton.setOnClickListener{
-            finish()
-        }
+
 
         mUpdateButton.setOnClickListener{
             val email = mOldEmailText.text.toString()
@@ -246,46 +238,24 @@ class PersonalActivity : AppCompatActivity(){
         val uid = mAuth!!.currentUser?.uid
         val currUser = uid?.let { mDatabaseReference!!.child(it) }
 
-        val subjectArr = arrayOf(
-            "None",
-            "Chemistry",
-            "Computer Science",
-            "Math",
-            "Physics",
-            "Statistics",
-            "Writing"
-        )
+
         var first = ""
         var last = ""
-        var subject = 0
         var major = ""
         var minor = ""
         var school = ""
         var learningStyle = ""
         val mFirstName = findViewById<EditText>(R.id.firstName)
         val mLastName = findViewById<EditText>(R.id.lastName)
-        val mCurrentSubject = findViewById<Spinner>(R.id.currentSubject)
         val mCurrentMajor = findViewById<EditText>(R.id.currentMajors)
         val mCurrentMinor = findViewById<EditText>(R.id.currentMinors)
         val mCurrentSchool = findViewById<EditText>(R.id.currentSchool)
         val mLearningStyle = findViewById<TextView>(R.id.learningStyle)
 
-        val mBackButton = findViewById<Button>(R.id.backbutton)
+
         val mUpdateButton = findViewById<Button>(R.id.update)
 
 
-        val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
-            this@PersonalActivity,
-            android.R.layout.simple_spinner_item, subjectArr
-        )
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        mCurrentSubject.adapter = adapter
-
-
-        mBackButton.setOnClickListener{
-            finish()
-        }
 
 
         mUpdateButton.setOnClickListener{
@@ -294,7 +264,7 @@ class PersonalActivity : AppCompatActivity(){
             currUser!!.child("major").setValue(mCurrentMajor.text.toString())
             currUser!!.child("minor").setValue(mCurrentMinor.text.toString())
             currUser!!.child("school").setValue(mCurrentSchool.text.toString())
-            currUser!!.child("subject").setValue(mCurrentSubject.selectedItemPosition)
+
             finish()
         }
 
@@ -309,14 +279,14 @@ class PersonalActivity : AppCompatActivity(){
                 minor = default(snapshot.child("minor")?.value)
                 school = default(snapshot.child("school")?.value)
                 learningStyle = default(snapshot.child("style_of_learning")?.value)
-                subject = defaultInt(snapshot.child("subject")?.value).toInt()
+
                 mFirstName.setText(first)
                 mLastName.setText(last)
                 mCurrentMajor.setText(major)
                 mCurrentMinor.setText(minor)
                 mCurrentSchool.setText(school)
                 mLearningStyle.text = learningStyle
-                mCurrentSubject.setSelection(subject)
+
             }
 
             override fun onCancelled(error: DatabaseError) {
