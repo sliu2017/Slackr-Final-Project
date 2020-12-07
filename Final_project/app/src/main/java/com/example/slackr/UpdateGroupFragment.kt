@@ -1,6 +1,7 @@
 package com.example.slackr
 
 import android.app.Dialog
+import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,13 +21,14 @@ class UpdateGroupFragment : DialogFragment() {
     private lateinit var  groupNameET: EditText
     private lateinit var groupDescriptionET:EditText
     private lateinit var groupLogisiticsET:EditText
-    private lateinit var groupParticipantET:EditText
+    private lateinit var groupParticipantET:TextView
     var closeTV : TextView?= null
     var updatebtn: Button? = null
+    var deletebtn: Button? = null
     private var mDatabaseReference: DatabaseReference? = null
     private var mDatabase: FirebaseDatabase? = null
     private var mAuth: FirebaseAuth? = null
-    private lateinit var databaseGroups: DatabaseReference
+    private lateinit var database: DatabaseReference
 
 
     companion object {
@@ -44,14 +46,25 @@ class UpdateGroupFragment : DialogFragment() {
 
     }
 
+    private var mContext : Context? = null
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        // Bug: in api< 23 this is never called
+        // so mActivity=null
+        // so app crashes with null-pointer exception
+        mContext = context
+    }
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         var createView=inflater.inflate(R.layout.fragment_update_group, container, false)
         dialog?.setCanceledOnTouchOutside(false)
         updatebtn= createView.findViewById(R.id.update_group_btn)
+        deletebtn= createView.findViewById(R.id.delete_group_btn)
+
         groupNameET = createView.findViewById(R.id.groupName)
         groupDescriptionET = createView.findViewById(R.id.group_descrition)
         groupLogisiticsET = createView.findViewById(R.id.group_logistics)
@@ -60,74 +73,68 @@ class UpdateGroupFragment : DialogFragment() {
         mDatabase = FirebaseDatabase.getInstance()
         mAuth = FirebaseAuth.getInstance()
         mDatabaseReference = mDatabase!!.reference.child("Users")
-        databaseGroups = mDatabase!!.reference
+        database = mDatabase!!.reference
         val groupId=arguments!!.getString("groupID")
 
-        groupId?.let {databaseGroups!!.child("Groups").child(it)}?.addListenerForSingleValueEvent(object :
+        groupId?.let {database!!.child("Groups").child(it)}?.addListenerForSingleValueEvent(object :
                 ValueEventListener {
-        override fun onDataChange(snapshot: DataSnapshot) {
-            val groupName = snapshot.child("groupName").value as String
-            val groupDesc = snapshot.child("groupDescription").value as String
-            val groupLog = snapshot.child("groupLogistics").value as String
-            val groupSize = snapshot.child("groupParticipantLimit").value as String
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val groupName = snapshot.child("groupName").value as String
+                val groupDesc = snapshot.child("groupDescription").value as String
+                val groupLog = snapshot.child("groupLogistics").value as String
+                val groupSearchKey = snapshot.child("searchKey").value as String
 
-            groupNameET.setText(groupName)
-            groupDescriptionET.setText(groupDesc)
-            groupLogisiticsET.setText(groupLog)
-            groupParticipantET.setText(groupSize)
-
-        }
-
-        override fun onCancelled(error: DatabaseError) {
-            TODO("Not yet implemented")
-        }
-    })
-
-
-    closeTV!!.setOnClickListener{
-            dismiss()
-        }
-        updatebtn!!.setOnClickListener{
-
-            if(groupLogisiticsET!!.text.isEmpty()){
-                Toast.makeText(this@UpdateGroupFragment.context, "Please enter logistics", Toast.LENGTH_LONG).show()
-                return@setOnClickListener
+                groupNameET.setText(groupName)
+                groupDescriptionET.setText(groupDesc)
+                groupLogisiticsET.setText(groupLog)
+                groupParticipantET.setText(groupSearchKey)
+                Toast.makeText(this@UpdateGroupFragment.context, "group updated", Toast.LENGTH_LONG)
             }
 
-            if(groupNameET.text.isBlank() || groupNameET.text.isEmpty()){
-                Toast.makeText(this@UpdateGroupFragment.activity, "Group name is required", Toast.LENGTH_LONG).show()
-            }else{
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+
+
+        updatebtn!!.setOnClickListener {
+
+            if (groupNameET.text.isBlank() || groupNameET.text.isEmpty()) {
+                Toast.makeText(
+                        this@UpdateGroupFragment.activity,
+                        "Group name is required",
+                        Toast.LENGTH_LONG
+                ).show()
+            } else {
                 if (groupId != null) {
                     val childUpdates = hashMapOf<String, Any>(
-                        "/Groups/$groupId/groupName" to groupNameET.text.toString(),
-                        "/Groups/$groupId/groupDescription" to groupDescriptionET.text.toString(),
-                        "/Groups/$groupId/groupLogistics" to groupLogisiticsET.text.toString(),
-                        "/Groups/$groupId/groupParticipantLimit" to groupParticipantET.text.toString()
+                            "/Groups/$groupId/groupName" to groupNameET.text.toString(),
+                            "/Groups/$groupId/groupDescription" to groupDescriptionET.text.toString(),
+                            "/Groups/$groupId/groupLogistics" to groupLogisiticsET.text.toString()
+
                     )
-                    databaseGroups.updateChildren(childUpdates).addOnCompleteListener{
-                            task->
+                    database.updateChildren(childUpdates).addOnCompleteListener { task ->
                         run {
 
                             if (task.isSuccessful) {
 
-                                if(this@UpdateGroupFragment.context !=null){
+                                if (this@UpdateGroupFragment.context != null) {
                                     Toast.makeText(
-                                        this@UpdateGroupFragment.context,
-                                        "Group Updated",
-                                        Toast.LENGTH_LONG
+                                            this@UpdateGroupFragment.context,
+                                            "Group Updated",
+                                            Toast.LENGTH_LONG
                                     ).show()
                                 }
                                 dismiss()
                                 activity!!.finish()
 
 
-
                             } else {
-                                if(this@UpdateGroupFragment.context !=null){
+                                if (this@UpdateGroupFragment.context != null) {
                                     Toast.makeText(
-                                        this@UpdateGroupFragment.context,
-                                        "Failed to Update Group",
-                                        Toast.LENGTH_LONG
+                                            this@UpdateGroupFragment.context,
+                                            "Failed to Update Group",
+                                            Toast.LENGTH_LONG
                                     ).show()
                                 }
                                 dismiss()
@@ -139,6 +146,35 @@ class UpdateGroupFragment : DialogFragment() {
 
                 }
             }
+
+        }
+        closeTV!!.setOnClickListener{
+            dismiss()
+        }
+        deletebtn!!.setOnClickListener{
+            groupId?.let{
+                database!!.child("Groups").child(it)}?.removeValue()?.addOnCompleteListener {
+                if( it.isSuccessful){
+                    Toast.makeText(this@UpdateGroupFragment.context, "group deleted", Toast.LENGTH_LONG)
+                } else{
+                    Toast.makeText(this@UpdateGroupFragment.context, "Unable to delete the group", Toast.LENGTH_LONG)
+                }
+
+                dismiss()
+                activity!!.finish()
+            }
+            groupId?.let {database!!.child("Matches").orderByChild("groupID").equalTo(groupId)}?.addListenerForSingleValueEvent(
+                    object :
+                            ValueEventListener {
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            for( postSnapshot in snapshot.children){
+                                postSnapshot.ref.setValue(null)
+                            }
+                        }
+                        override fun onCancelled(error: DatabaseError) {
+                            TODO("Not yet implemented")
+                        }
+                    })
 
         }
 
