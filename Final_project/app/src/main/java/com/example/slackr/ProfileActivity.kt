@@ -111,7 +111,7 @@ class ProfileActivity : AppCompatActivity() {
 
                 if (selectedImage != null) {
 
-
+                    getBitmapFromUri(selectedImage)
 
 
                     val profileUpdates = UserProfileChangeRequest.Builder()
@@ -134,6 +134,26 @@ class ProfileActivity : AppCompatActivity() {
                 // TODO Auto-generated catch block
                 e.printStackTrace()
             }
+        }
+    }
+
+    fun getBitmapFromUri(photoUri: Uri){
+        var mBitmap: Bitmap? = null
+
+        val imageStream =
+                photoUri?.let { this@ProfileActivity.contentResolver.openInputStream(it) };
+        mBitmap = BitmapFactory.decodeStream(imageStream);
+
+        if (mBitmap == null) {
+            mBitmap = BitmapFactory.decodeResource(resources, R.drawable.profile_user_white)
+        }
+        val buttonLoadImage = findViewById<ImageView>(R.id.profilepic)
+        buttonLoadImage.setImageBitmap(mBitmap)
+
+        val sharedPref = this?.getPreferences(Context.MODE_PRIVATE) ?: return
+        with(sharedPref.edit()) {
+            putString(mAuth!!.currentUser?.uid, photoUri.toString())
+            apply()
         }
     }
 
@@ -180,7 +200,7 @@ class SecurityActivity: AppCompatActivity(){
                 .getCredential(email, pw)
             mAuth!!.currentUser?.reauthenticate(credential)!!.addOnCompleteListener {
                 if(it.isSuccessful) {
-                    Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -188,14 +208,14 @@ class SecurityActivity: AppCompatActivity(){
                 mAuth!!.currentUser?.updateEmail(mNewEmailText.text.toString())
                     ?.addOnCompleteListener {
                         if (it.isSuccessful) {
-                            Toast.makeText(this, "Email Change Successful", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Email change successful", Toast.LENGTH_SHORT).show()
                         }
                     }
             }
             if(!mNewPwText.text.isBlank()) {
                 mAuth!!.currentUser?.updatePassword(mNewPwText.text.toString())?.addOnCompleteListener{
                     if(it.isSuccessful){
-                        Toast.makeText(this, "Password Change Successful", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Password change successful", Toast.LENGTH_SHORT).show()
                     }
                 }
 
