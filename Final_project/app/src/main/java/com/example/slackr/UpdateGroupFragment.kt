@@ -167,7 +167,7 @@ class UpdateGroupFragment : DialogFragment() {
                 dismiss()
                 activity!!.finish()
             }
-            groupId?.let {database!!.child("Matches").orderByChild("groupID").equalTo(groupId)}?.addListenerForSingleValueEvent(
+            /*groupId?.let {database!!.child("Matches").orderByChild("groupID").equalTo(groupId)}?.addListenerForSingleValueEvent(
                     object :
                             ValueEventListener {
                         override fun onDataChange(snapshot: DataSnapshot) {
@@ -178,7 +178,7 @@ class UpdateGroupFragment : DialogFragment() {
                         override fun onCancelled(error: DatabaseError) {
                             TODO("Not yet implemented")
                         }
-                    })
+                    })*/
 
         }
 
