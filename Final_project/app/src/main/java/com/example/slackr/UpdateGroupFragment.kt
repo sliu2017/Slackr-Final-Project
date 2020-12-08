@@ -18,6 +18,8 @@ import com.google.firebase.database.*
 
 class UpdateGroupFragment : DialogFragment() {
 
+    // Dialog for letting users update fields in the groups they own
+
     private lateinit var  groupNameET: EditText
     private lateinit var groupDescriptionET:EditText
     private lateinit var groupLogisiticsET:EditText
@@ -49,9 +51,6 @@ class UpdateGroupFragment : DialogFragment() {
     private var mContext : Context? = null
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        // Bug: in api< 23 this is never called
-        // so mActivity=null
-        // so app crashes with null-pointer exception
         mContext = context
     }
 
@@ -78,6 +77,9 @@ class UpdateGroupFragment : DialogFragment() {
 
         groupId?.let {database!!.child("Groups").child(it)}?.addListenerForSingleValueEvent(object :
                 ValueEventListener {
+
+            // Load current group information from storage
+
             override fun onDataChange(snapshot: DataSnapshot) {
                 val groupName = snapshot.child("groupName").value as String
                 val groupDesc = snapshot.child("groupDescription").value as String
@@ -88,7 +90,7 @@ class UpdateGroupFragment : DialogFragment() {
                 groupDescriptionET.setText(groupDesc)
                 groupLogisiticsET.setText(groupLog)
                 groupParticipantET.setText(groupSearchKey)
-                Toast.makeText(this@UpdateGroupFragment.context, "group updated", Toast.LENGTH_LONG)
+                Toast.makeText(this@UpdateGroupFragment.context, "Group Updated", Toast.LENGTH_LONG)
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -99,10 +101,12 @@ class UpdateGroupFragment : DialogFragment() {
 
         updatebtn!!.setOnClickListener {
 
+            // Check that group fields are not blank or invalid
+
             if (groupNameET.text.isBlank() || groupNameET.text.isEmpty()) {
                 Toast.makeText(
                         this@UpdateGroupFragment.activity,
-                        "Group name is required",
+                        "Group Name is Required",
                         Toast.LENGTH_LONG
                 ).show()
             } else {
@@ -155,9 +159,9 @@ class UpdateGroupFragment : DialogFragment() {
             groupId?.let{
                 database!!.child("Groups").child(it)}?.removeValue()?.addOnCompleteListener {
                 if( it.isSuccessful){
-                    Toast.makeText(this@UpdateGroupFragment.context, "group deleted", Toast.LENGTH_LONG)
+                    Toast.makeText(this@UpdateGroupFragment.context, "Group Deleted", Toast.LENGTH_LONG)
                 } else{
-                    Toast.makeText(this@UpdateGroupFragment.context, "Unable to delete the group", Toast.LENGTH_LONG)
+                    Toast.makeText(this@UpdateGroupFragment.context, "Unable to Delete the Group", Toast.LENGTH_LONG)
                 }
 
                 dismiss()

@@ -1,6 +1,9 @@
 package com.example.slackr
 
 class Validators {
+
+    // Validates email and password strings
+
     fun validEmail(email: String?) : Boolean {
         if (email.isNullOrEmpty()) {
             return false

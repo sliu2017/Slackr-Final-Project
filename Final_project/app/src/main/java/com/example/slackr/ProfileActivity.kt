@@ -21,14 +21,18 @@ import com.google.firebase.storage.StorageReference
 import java.io.FileNotFoundException
 import java.io.IOException
 
+//Set of classes responsible for the profile page
 
 class ProfileActivity : AppCompatActivity() {
-    // add option to link to fb/twitter, and if no linked, send email when connecting
+
+    // Main page for user profile
+    // Contains profile picture and buttons to go to security settings and personal info settings
 
     private var mDatabaseReference: DatabaseReference? = null
     private var mDatabase: FirebaseDatabase? = null
     private var mAuth: FirebaseAuth? = null
     private var mStorageReference: StorageReference? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,13 +50,12 @@ class ProfileActivity : AppCompatActivity() {
         val buttonLoadImage = findViewById<ImageView>(R.id.profilepic)
         val uid = mAuth!!.currentUser?.uid
 
+        // Load profile picture
 
         val sharedPref = this?.getPreferences(Context.MODE_PRIVATE) ?: return
         val defaultUri = Uri.parse("android.resource://com.example.slackr/drawable/profile_user_white")
 
         buttonLoadImage.setImageURI(Uri.parse(sharedPref.getString(uid, defaultUri.toString())))
-
-
         buttonLoadImage.setOnClickListener{
                 val i = Intent(
                     Intent.ACTION_OPEN_DOCUMENT,
@@ -79,6 +82,7 @@ class ProfileActivity : AppCompatActivity() {
         uid?.let { mDatabaseReference!!.child(it)}?.addListenerForSingleValueEvent(object :
             ValueEventListener {
 
+            // Get first/last name of user
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 first = snapshot.child("fname").value as String
@@ -101,7 +105,6 @@ class ProfileActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
 
-        //change to match with registrationactivity
         if (requestCode == 1 && resultCode == RESULT_OK) {
             val selectedImage = data?.data
             try {
@@ -109,7 +112,7 @@ class ProfileActivity : AppCompatActivity() {
                 if (selectedImage != null) {
 
 
-                    getBitmapFromUri(selectedImage)
+
 
                     val profileUpdates = UserProfileChangeRequest.Builder()
                         .setPhotoUri(Uri.parse(selectedImage.toString()))
@@ -121,9 +124,7 @@ class ProfileActivity : AppCompatActivity() {
                                 Toast.makeText(this, "Profile Updated", Toast.LENGTH_SHORT)
                             }
                         })
-                    /*mStorageReference!!.child("images/" + mAuth!!.currentUser?.uid).putFile(
-                        selectedImage
-                    )*/
+
 
                 }
             } catch (e: FileNotFoundException) {
@@ -136,29 +137,12 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-    fun getBitmapFromUri(photoUri: Uri){
-        var mBitmap: Bitmap? = null
-
-        val imageStream =
-            photoUri?.let { this@ProfileActivity.contentResolver.openInputStream(it) };
-        mBitmap = BitmapFactory.decodeStream(imageStream);
-
-        if (mBitmap == null) {
-            mBitmap = BitmapFactory.decodeResource(resources, R.drawable.profile_user_white)
-        }
-        val buttonLoadImage = findViewById<ImageView>(R.id.profilepic)
-        buttonLoadImage.setImageBitmap(mBitmap)
-
-        val sharedPref = this?.getPreferences(Context.MODE_PRIVATE) ?: return
-        with(sharedPref.edit()) {
-            putString(mAuth!!.currentUser?.uid, photoUri.toString())
-            apply()
-        }
-    }
 
 }
 
 class SecurityActivity: AppCompatActivity(){
+
+    // Allows user to change email and password
 
     private var mDatabaseReference: DatabaseReference? = null
     private var mDatabase: FirebaseDatabase? = null
@@ -180,10 +164,11 @@ class SecurityActivity: AppCompatActivity(){
         val mNewEmailText = findViewById<EditText>(R.id.newEmail)
         val mNewPwText = findViewById<EditText>(R.id.newPw)
 
-        val image = findViewById<ImageView>(R.id.imageButton2)
-        //image.setImageResource(R.drawable.ic_lo)
 
         mUpdateButton.setOnClickListener{
+
+            // Updates email and password fields, given that the correct login information is provided
+
             val email = mOldEmailText.text.toString()
             val pw = mOldPwText.text.toString()
 
@@ -195,7 +180,7 @@ class SecurityActivity: AppCompatActivity(){
                 .getCredential(email, pw)
             mAuth!!.currentUser?.reauthenticate(credential)!!.addOnCompleteListener {
                 if(it.isSuccessful) {
-                    Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -203,14 +188,14 @@ class SecurityActivity: AppCompatActivity(){
                 mAuth!!.currentUser?.updateEmail(mNewEmailText.text.toString())
                     ?.addOnCompleteListener {
                         if (it.isSuccessful) {
-                            Toast.makeText(this, "Email change successful", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Email Change Successful", Toast.LENGTH_SHORT).show()
                         }
                     }
             }
             if(!mNewPwText.text.isBlank()) {
                 mAuth!!.currentUser?.updatePassword(mNewPwText.text.toString())?.addOnCompleteListener{
                     if(it.isSuccessful){
-                        Toast.makeText(this, "Password change successful", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Password Change Successful", Toast.LENGTH_SHORT).show()
                     }
                 }
 
@@ -221,6 +206,9 @@ class SecurityActivity: AppCompatActivity(){
 }
 
 class PersonalActivity : AppCompatActivity(){
+
+    // Displays the personal information of each user
+
     private var mDatabaseReference: DatabaseReference? = null
     private var mDatabase: FirebaseDatabase? = null
     private var mAuth: FirebaseAuth? = null
@@ -229,16 +217,12 @@ class PersonalActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.profile_personal)
 
-
-
-
         mDatabase = FirebaseDatabase.getInstance()
         mDatabaseReference = mDatabase!!.reference.child("Users")
         mAuth = FirebaseAuth.getInstance()
 
         val uid = mAuth!!.currentUser?.uid
         val currUser = uid?.let { mDatabaseReference!!.child(it) }
-
 
         var first = ""
         var last = ""
@@ -253,11 +237,9 @@ class PersonalActivity : AppCompatActivity(){
         val mCurrentSchool = findViewById<EditText>(R.id.currentSchool)
         val mLearningStyle = findViewById<TextView>(R.id.learningStyle)
 
-
         val mUpdateButton = findViewById<Button>(R.id.update)
 
-
-9
+        // Update user fields
 
         mUpdateButton.setOnClickListener{
             currUser!!.child("fname").setValue(mFirstName.text.toString())
@@ -272,6 +254,7 @@ class PersonalActivity : AppCompatActivity(){
         uid?.let { mDatabaseReference!!.child(it)}?.addListenerForSingleValueEvent(object :
             ValueEventListener {
 
+            // Retrieve user data from storage
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 first = default(snapshot.child("fname")?.value)
@@ -296,12 +279,6 @@ class PersonalActivity : AppCompatActivity(){
         })
     }
 
-    fun defaultInt(value: Any?) : Long {
-        if(value != null){
-            return value as Long
-        }
-        return 0
-    }
 
     fun default(value: Any?) :String{
         if(value != null){

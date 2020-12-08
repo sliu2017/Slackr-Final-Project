@@ -11,7 +11,9 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class DashBoardActivity : AppCompatActivity() {
-    
+
+    // Displays the app dashboard
+
     private var logOutCard : CardView? = null
     private var profileCard : CardView? = null
     private var styleCard : CardView? = null

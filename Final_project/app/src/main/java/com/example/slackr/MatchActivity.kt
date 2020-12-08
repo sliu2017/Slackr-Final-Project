@@ -10,6 +10,10 @@ import com.google.firebase.database.*
 
 class MatchActivity : AppCompatActivity() {
 
+    // Responsible for matching a user based on their learning style and the class they inputted
+    // If a matching group not created by the user is found, it is added to the database
+    // If the user does not find a match, he/she has the option to create a group
+
     private var mDatabase: FirebaseDatabase? = null
     private var mAuth: FirebaseAuth? = null
     private lateinit var databaseGroups: DatabaseReference
@@ -47,9 +51,11 @@ class MatchActivity : AppCompatActivity() {
             val uid = mAuth!!.currentUser?.uid
             matches = ArrayList()
 
+            // Check that the class code follows the standard UMD string pattern
+
             val codeRegex = Regex("^[0-9]{3}[a-zA-Z]*$")
             if(!code.matches(codeRegex)){
-                Toast.makeText(this, "Please submit a valid class code.", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Please submit a valid class code", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
 
@@ -61,10 +67,12 @@ class MatchActivity : AppCompatActivity() {
 
                     val learningStyle = snapshot.child("style_of_learning").value as String
 
+                    // Checks to see if the user has been given a learning style
+
                     if (learningStyle.isEmpty()) {
 
                         Toast.makeText(
-                            applicationContext, "you don\'t have a learning" +
+                            applicationContext, "You don\'t have a learning" +
                                     "style set. Please take this short quiz to find" +
                                     "your learning style", Toast.LENGTH_LONG
                         ).show()
@@ -73,6 +81,10 @@ class MatchActivity : AppCompatActivity() {
                         startActivity(intent)
                     } else {
                         val key: String = subject + code + learningStyle
+
+                        // Search the database by search key (subject code + learning style)
+                        // If the user does not have a match, he/she can create a group
+                        // If there are matching groups found, they are displayed
 
                         Log.i(TAG, key)
                         databaseGroups.orderByChild("searchKey").equalTo(key)
@@ -165,6 +177,8 @@ class MatchActivity : AppCompatActivity() {
     }
 
     companion object {
+
+        // List of class codes
 
         const val TAG = "Final_Project"
 
