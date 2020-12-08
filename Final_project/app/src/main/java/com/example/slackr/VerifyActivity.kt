@@ -13,6 +13,8 @@ import com.google.firebase.database.FirebaseDatabase
 
 class VerifyActivity : AppCompatActivity() {
 
+    // Activity for verifying new users before they login
+
     private var mDatabaseReference: DatabaseReference? = null
     private var mDatabase: FirebaseDatabase? = null
     private var verifyBtn: Button? = null

@@ -2,6 +2,8 @@ package com.example.slackr
 
 class User {
 
+    // Stores data for each user
+
         var fname: String? = null
         var lname: String? = null
         var email: String? = null

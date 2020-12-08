@@ -1,6 +1,5 @@
 package com.example.slackr
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +12,8 @@ import com.google.firebase.database.FirebaseDatabase
 
 @Suppress("NAME_SHADOWING")
 class QuizActivity : AppCompatActivity() {
+
+    // Activity for taking the learning style quiz
 
     private var btnNext: Button? = null
     private var questionTv: TextView? =null
@@ -51,9 +52,7 @@ class QuizActivity : AppCompatActivity() {
         mAudible!!.text= que.audible
 
         btnNext!!.setOnClickListener {
-            //Log.i(TAG, count.toString())
             count++
-            //Log.i(TAG, count.toString())
 
             if( mTactile!!.isChecked){
                 tactileRes++
@@ -92,9 +91,8 @@ class QuizActivity : AppCompatActivity() {
                         
                     )
                     mDatabase!!.reference.updateChildren(childUpdates)
-                   // mDatabaseReference!!.child(mAuth!!.currentUser!!.uid).child("style_of_learning").setValue(type)
                     Log.i(TAG, type)
-                    val newFragment = AlertDialogFragment.newInstance(type)
+                    val newFragment = QuizResultFragment.newInstance(type)
                     newFragment.show(supportFragmentManager, "quiz_result")
                 }
             }

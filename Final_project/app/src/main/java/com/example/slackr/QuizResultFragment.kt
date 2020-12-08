@@ -8,15 +8,17 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 
 
-open class AlertDialogFragment : DialogFragment() {
+open class QuizResultFragment : DialogFragment() {
+    // Dialog fragment for displaying the result of the learning style quiz.
+    // The user can either close the quiz, or tap the 'Tips' button for pointers on their learning style.
+    // Learning style tips are taken from http://www.educationplanner.org/students/self-assessments/learning-styles-quiz.shtml
 
-
-    // Class that creates the AlertDialog
 
     companion object {
 
-        fun newInstance(type:String): AlertDialogFragment {
-            val fragment = AlertDialogFragment()
+        // Result of the quiz is sent as a dialog
+        fun newInstance(type:String): QuizResultFragment {
+            val fragment = QuizResultFragment()
             val bundle = Bundle()
             bundle.putString("msg", type) // set msg here
             fragment.arguments=bundle
@@ -25,6 +27,8 @@ open class AlertDialogFragment : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        // Create the dialog fragment
+
         return activity?.let {
             // Use the Builder class for convenient dialog construction
             val builder = AlertDialog.Builder(it)

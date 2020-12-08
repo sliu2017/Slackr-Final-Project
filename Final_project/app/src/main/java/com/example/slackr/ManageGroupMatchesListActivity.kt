@@ -11,6 +11,8 @@ import androidx.core.view.get
 
 class ManageGroupMatchesListActivity : AppCompatActivity() {
 
+    // Manage the groups that the user matches with
+
     private lateinit var matches: ArrayList<StudyGroup>
     private lateinit var listViewMatches: ListView
     override fun onCreate(savedInstanceState: Bundle?) {

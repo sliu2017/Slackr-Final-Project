@@ -13,6 +13,9 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class LoginActivity : AppCompatActivity() {
+
+    // Activity for login screen on app
+
     private var mDatabaseReference: DatabaseReference? = null
     private var mDatabase: FirebaseDatabase? = null
     private var userEmail: EditText? = null
@@ -42,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    // TODO: Allow the user to log into their account
+    // Allow the user to log into their account
     // If the email and password are not empty, try to log in
     // If the login is successful, store info into intent and launch DashboardActivity
     private fun loginUserAccount() {
@@ -51,11 +54,11 @@ class LoginActivity : AppCompatActivity() {
         val password: String = userPassword!!.text.toString()
 
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(applicationContext, "Please enter email...", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "Please Enter Email", Toast.LENGTH_LONG).show()
             return
         }
         if (TextUtils.isEmpty(password)) {
-            Toast.makeText(applicationContext, "Please enter password!", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "Please Enter Password", Toast.LENGTH_LONG).show()
             return
         }
 
@@ -64,14 +67,14 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
 
                     val uid= mAuth!!.currentUser!!.uid
-                    Log.i("log in successful", uid)
+                    Log.i("login successful", uid)
                     if (mAuth!!.currentUser!!.isEmailVerified){
                         val intent=Intent(this@LoginActivity, DashBoardActivity::class.java)
                         startActivity(intent)
                     } else{
                         Toast.makeText(
                             applicationContext,
-                            "Please verify your account",
+                            "Please Verify Your Account",
                             Toast.LENGTH_LONG
                         ).show()
                         val intent=Intent(this@LoginActivity, VerifyActivity::class.java)
