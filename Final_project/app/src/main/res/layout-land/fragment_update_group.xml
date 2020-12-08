@@ -107,8 +107,6 @@
                         android:hint="Logistics"
                         android:imeOptions="actionDone|flagNoExtractUi"
                         android:inputType="textPersonName"
-
-                        android:maxLength="10"
                         android:paddingLeft="10dp"
                         android:singleLine="true"
                         android:textColor="@color/white"

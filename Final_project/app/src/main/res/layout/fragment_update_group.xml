@@ -103,7 +103,6 @@
                 android:inputType="textPersonName"
                 android:hint="Logistics"
                 android:background="@drawable/editcreatebg"
-                android:maxLength="10"
                />
 
             <TextView
