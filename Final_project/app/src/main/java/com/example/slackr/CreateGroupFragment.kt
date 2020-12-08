@@ -17,6 +17,8 @@ import com.google.firebase.database.*
 
 class CreateGroupFragment : DialogFragment() {
 
+    // Dialog Fragment for group creation during matching
+
     private var groupNameET: EditText? = null
     private var groupDescriptionET:EditText? = null
     private var groupLogisiticsET:EditText? = null
@@ -30,6 +32,8 @@ class CreateGroupFragment : DialogFragment() {
 
 
     companion object {
+
+        // Creates a group
 
         fun newInstance(subject:String, code:String): DialogFragment {
             val fragment = CreateGroupFragment()
@@ -70,13 +74,15 @@ class CreateGroupFragment : DialogFragment() {
             val subject =arguments!!.get("subject") as String
             val code= arguments!!.get("code") as String
 
+            // Data validation, checking for invalid or blank fields
+
             if(groupLogisiticsET!!.text.isEmpty()){
-                Toast.makeText(this@CreateGroupFragment.context, "Please enter logistics", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@CreateGroupFragment.context, "Please Enter Logistics", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
 
             if(groupNameET!!.text.isEmpty() || groupNameET!!.text.isBlank()){
-                Toast.makeText(this@CreateGroupFragment.context, "Group name is required!", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@CreateGroupFragment.context, "Group Name is Required!", Toast.LENGTH_LONG).show()
             } else{
                 var group = StudyGroup(groupNameET!!.text.toString(), groupDescriptionET!!.text.toString(), groupLogisiticsET!!.text.toString(),
                     groupParticipantET!!.text.toString(),
@@ -93,6 +99,9 @@ class CreateGroupFragment : DialogFragment() {
 
                             uid?.let { mDatabaseReference!!.child(it)}?.addListenerForSingleValueEvent(object :
                                 ValueEventListener {
+
+                                // Updating learning style of the group and adding a search key
+
                                 override fun onDataChange(snapshot: DataSnapshot) {
                                     val learningStyle = snapshot.child("style_of_learning").value as String
                                     databaseGroups.child(id).child("groupLearningStyle").setValue(learningStyle)
@@ -105,7 +114,7 @@ class CreateGroupFragment : DialogFragment() {
                                 }
                             }
                             )
-                            Toast.makeText(this@CreateGroupFragment.context, "Group created!", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@CreateGroupFragment.context, "Group Created!", Toast.LENGTH_LONG).show()
                             dismiss()
                         } else{
                             Toast.makeText(this@CreateGroupFragment.context, "Unable to create the group. Please try again later!", Toast.LENGTH_LONG).show()
@@ -120,6 +129,7 @@ class CreateGroupFragment : DialogFragment() {
         return createView
     }
 
+    // Handle landscape display
     override fun onStart() {
         super.onStart()
         val orientation = resources.configuration.orientation

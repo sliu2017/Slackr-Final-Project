@@ -11,6 +11,8 @@ import androidx.core.view.get
 
 class GroupListActivity : AppCompatActivity() {
 
+    // Displays groups in a list
+
     private lateinit var matches: ArrayList<StudyGroup>
     private lateinit var listViewMatches: ListView
     private lateinit var createbtn: Button

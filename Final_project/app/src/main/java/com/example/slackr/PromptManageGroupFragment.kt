@@ -12,6 +12,8 @@ import com.google.firebase.database.*
 
 class PromptManageGroupFragment : DialogFragment() {
 
+    // Dialog fragment for taking the user to manage groups that he/she created, or groups that he/she matches with
+
     private var mDatabaseReference: DatabaseReference? = null
     private var mDatabase: FirebaseDatabase? = null
     private var mAuth: FirebaseAuth? = null
@@ -29,11 +31,9 @@ class PromptManageGroupFragment : DialogFragment() {
     private var mContext : Context? = null
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        // Bug: in api< 23 this is never called
-        // so mActivity=null
-        // so app crashes with null-pointer exception
         mContext = context
     }
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         mDatabase = FirebaseDatabase.getInstance()
         mAuth = FirebaseAuth.getInstance()
@@ -65,12 +65,15 @@ class PromptManageGroupFragment : DialogFragment() {
                                         groups.add(group!!)
                                     }
                                 }
+
+                                // Checks if user has matched with any groups
+
                                 if (groups.isEmpty()) {
 
                                     Toast.makeText(
-                                            mContext, "you currently " +
-                                            "have no matches " +
-                                            "Please find a matches", Toast.LENGTH_LONG).show()
+                                            mContext, "You Currently " +
+                                            "Have No Matches " +
+                                            "Please Find a Match", Toast.LENGTH_LONG).show()
                                     dismiss()
 
                                 } else {
@@ -115,11 +118,14 @@ class PromptManageGroupFragment : DialogFragment() {
                                         groups.add(group!!)
                                     }
                                 }
+
+                                // Checks if user has created a group
+
                                 if (groups.isEmpty()) {
 
-                                    Toast.makeText(mContext, "you currently " +
-                                            "have no personal groups " +
-                                            "Please find a matches or create one", Toast.LENGTH_LONG).show()
+                                    Toast.makeText(mContext, "You Currently " +
+                                            "Have No Personal Groups " +
+                                            "Please Find a Match or Create One", Toast.LENGTH_LONG).show()
                                     dismiss()
 
                                 } else {
@@ -141,7 +147,7 @@ class PromptManageGroupFragment : DialogFragment() {
                             }
                         }))
                 }
-                .setTitle("Manage groups")
+                .setTitle("Manage Groups")
                 .setMessage("What groups do you want to manage?")
             // Create the AlertDialog object and return it
             builder.create()

@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 
 class ManagePersonalGroupListActivity : AppCompatActivity() {
 
+    // Manages groups that the user created
+
     private lateinit var matches: ArrayList<StudyGroup>
     private lateinit var listViewMatches: ListView
     override fun onCreate(savedInstanceState: Bundle?) {

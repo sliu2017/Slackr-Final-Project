@@ -4,6 +4,9 @@ import android.os.Parcel
 import android.os.Parcelable
 
 class StudyGroup() : Parcelable {
+
+    // Represents a study group with necessary data
+
     var groupID: String? =null
     var groupName: String? = null
     var groupDescription: String? = null

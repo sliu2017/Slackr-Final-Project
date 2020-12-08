@@ -11,6 +11,8 @@ import androidx.fragment.app.DialogFragment
 
 class PromptCreateGroupFragment : DialogFragment() {
 
+    // Dialog to ask the user if he/she wants to create a group
+
     companion object {
 
         fun newInstance(subject:String, code:String): DialogFragment {

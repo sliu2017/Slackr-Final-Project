@@ -17,6 +17,8 @@ import com.google.firebase.database.*
 
 class DisplayGroupFragment : DialogFragment() {
 
+    // Retrieves a group based on a given ID, and displays its information in a fragment
+
     private lateinit var  groupNameTV: TextView
     private lateinit var groupDescriptionTV:TextView
     private lateinit var groupLogisiticsTV:TextView

@@ -11,6 +11,8 @@ import androidx.fragment.app.DialogFragment
 
 class PromptNoGroupFragment : DialogFragment() {
 
+    // Dialog that appears when there are no matching groups apart from the ones the user created
+
     companion object {
 
         fun newInstance(): DialogFragment {
@@ -31,7 +33,7 @@ class PromptNoGroupFragment : DialogFragment() {
                 .setCancelable(false)
                 .setTitle("Result")
                 .setMessage("There is currently no group other than your personal group(s) matching " +
-                        "the search. Please Try again later")
+                        "the search. Please try again later")
             // Create the AlertDialog object and return it
             builder.create()
         } ?: throw IllegalStateException("Activity cannot be null")

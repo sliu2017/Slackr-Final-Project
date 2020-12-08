@@ -2,6 +2,8 @@ package com.example.slackr
 
 object Constants {
 
+    // Questions and answers to the quiz are taken from https://arden.ac.uk/what-type-learner-are-you
+
     fun getQuestions(): ArrayList<Question>{
         val questionList = ArrayList<Question>()
 

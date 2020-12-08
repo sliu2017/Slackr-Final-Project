@@ -11,6 +11,8 @@ import android.widget.TextView
 class GroupList(private val context: Activity, private var matches: List<StudyGroup>) : ArrayAdapter<StudyGroup>(context,
     R.layout.layout_group_list, matches) {
 
+    // Displays groups in a list
+
     @SuppressLint("InflateParams", "ViewHolder")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val inflater = context.layoutInflater

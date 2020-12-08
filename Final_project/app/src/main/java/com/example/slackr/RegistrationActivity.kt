@@ -13,6 +13,8 @@ import com.google.firebase.database.FirebaseDatabase
 
 class RegistrationActivity : AppCompatActivity() {
 
+    // Activity for registering new users with an email, password, and name
+
     private var emailTV: EditText? = null
     private var passwordTV: EditText? = null
     private var fnameTV: EditText ? = null
@@ -59,6 +61,7 @@ class RegistrationActivity : AppCompatActivity() {
             styleOfLearning=""
         }
 
+        // Checks that necessary fields are not left blank or invalid
 
         if (fname.isEmpty()) {
             Toast.makeText(applicationContext, "Please enter a valid first name...", Toast.LENGTH_LONG).show()
@@ -70,8 +73,6 @@ class RegistrationActivity : AppCompatActivity() {
             lnameTV!!.requestFocus()
             return
         }
-
-
 
         if (!validator.validEmail(email)) {
             Toast.makeText(applicationContext, "Please enter a valid email...", Toast.LENGTH_LONG).show()
@@ -93,6 +94,9 @@ class RegistrationActivity : AppCompatActivity() {
                             .child(FirebaseAuth.getInstance().currentUser!!.uid)
                             .setValue(user)
                             .addOnCompleteListener { task ->
+
+                                // If an error occurs during user creation, delete the user
+
                                 if (task.isSuccessful) {
                                     Toast.makeText(applicationContext, "Registration successful!", Toast.LENGTH_LONG).show()
                                     val intent = Intent(this@RegistrationActivity, LoginActivity::class.java)
